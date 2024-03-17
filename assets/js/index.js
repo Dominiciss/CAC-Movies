@@ -7,7 +7,7 @@ for (let i = 0; i < 19; i++) {
     const movie = document.createElement("li")
     const title = document.createElement("span")
     movie.classList.add("item")
-    movie.style.backgroundImage = `url("../assets/img/movies/peli_${i + 1}.jpg`
+    movie.style.backgroundImage = `url("../CAC-Movies/assets/img/movies/peli_${i + 1}.jpg`
     title.classList.add("title")
     title.innerHTML = titles[i]
     movie.appendChild(title)
@@ -19,7 +19,7 @@ for (let i = 0; i < 12; i++) {
     const movie = document.createElement("li")
     const title = document.createElement("span")
     movie.classList.add("item")
-    movie.style.backgroundImage = `url("../assets/img/movies/aclamada_${i + 1}.jpg`
+    movie.style.backgroundImage = `url("../CAC-Movies/assets/img/movies/aclamada_${i + 1}.jpg`
     title.classList.add("title")
     title.innerHTML = titles[i]
     movie.appendChild(title)
