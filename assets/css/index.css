@@ -150,6 +150,36 @@ main {
     margin: 5rem 0 0 0;
 }
 
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-5rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fade-in .4s ease-in-out 0s 1 forwards normal;
+}
+
+@keyframes scale-in {
+    0% {
+        transform: scale(0%);
+    }
+
+    80% {
+        transform: scale(110%);
+    }
+
+    100% {
+        transform: scale(100%);
+    }
+}
+
 main .banner {
     background: linear-gradient(to right top, #000000c6, #000000c6), url('../img/bg-banner.jpg');
     display: flex;
@@ -167,12 +197,14 @@ main .banner h1 {
     font-size: 3rem;
     font-weight: 600;
     color: var(--text);
+    animation: scale-in .4s ease-in-out 0s 1 forwards normal;
 }
 
 main .banner h2 {
     font-size: 2rem;
     font-weight: 400;
     color: var(--text);
+    animation: scale-in .4s ease-in-out 0s 1 forwards normal;
 }
 
 main .banner a {
@@ -183,6 +215,7 @@ main .banner a {
     padding: .7rem 1.8rem;
     border-radius: .4rem;
     transition: all .4s ease-in-out;
+    animation: scale-in .4s ease-in-out 0s 1 forwards normal;
 }
 
 main .banner a:hover {
@@ -313,6 +346,25 @@ main .featured-container li .title {
 
 main .featured-container li:hover .title {
     opacity: 1;
+}
+
+main .featured .button-slides {
+    width: 4rem;
+    height: 3rem;
+    margin: 0 2rem;
+    background-color: var(--primary);
+    border: 2px solid var(--text);
+    color: var(--text);
+    border-radius: .5rem;
+}
+
+main .featured .button-slides:hover {
+    cursor: pointer;
+}
+
+main .featured .button-slides svg {
+    width: 2rem;
+    height: 2rem;
 }
 
 main .best {

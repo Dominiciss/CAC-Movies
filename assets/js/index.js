@@ -1,6 +1,7 @@
 const featured = document.querySelector("section.featured .featured-container")
 const best = document.querySelector("section.best .best-container")
 const dropdown = document.querySelector("header nav .dropdown")
+const sections = document.querySelectorAll(".fade")
 
 for (let i = 0; i < 19; i++) {
     const titles = ["The Beekeeper", "Badland Hunters", "The Marvels", "Wonka", "Aquaman and the Lost Kingdom", "Migration", "Sixty Minutes", "Wish", "The Masked Saint", "Due Justice", "Orion and the Dark", "Genghis Khan", "Lift", "Attack", "Mutant Ghost Wargirl", "Poor Things", "The 5", "Truck: Locked in", "Anyone but you"]
@@ -42,4 +43,30 @@ dropdown.addEventListener("click", (e) => {
         menu.classList.add("open")
         menu.style.opacity = "1"
     }
+})
+
+const isInView = (element) => {
+    const rect = element.getBoundingClientRect();
+
+    return (
+        rect.bottom > 0 &&
+        rect.top < (window.innetHeight || document.documentElement.clientHeight)
+    )
+}
+
+const toggleNavbar = (element) => {
+    const rect = element.getBoundingClientRect();
+
+    return (
+        rect.bottom > 0 &&
+        rect.top < 0.1
+    )
+}
+
+document.addEventListener("scroll", () => {
+    sections.forEach(section => {
+        if (isInView(section)) {
+            section.classList.add("fade-in")
+        }
+    })
 })
