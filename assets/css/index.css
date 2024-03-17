@@ -353,7 +353,7 @@ main .featured .button-slides {
     height: 3rem;
     margin: 0 2rem;
     background-color: var(--primary);
-    border: 2px solid var(--text);
+    border: none;
     color: var(--text);
     border-radius: .5rem;
 }
