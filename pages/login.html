@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Login</title>
     <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/global.css">
-    <link rel="stylesheet" href="/assets/css/register.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 
 <body>
@@ -34,7 +34,7 @@
             <div class="right">
                 <ul id="dropdown-menu">
                     <li>
-                        <a href="/pages/login.html">Iniciar Sesión</a>
+                        <a href="/pages/register.html">Registrarse</a>
                     </li>
                 </ul>
             </div>
@@ -48,54 +48,18 @@
     </header>
     <main>
         <div class="card">
-            <h6>Registro</h6>
+            <h6>Iniciar Sesión</h6>
             <form action="#" method="POST">
-                <div class="input">
-                    <input name="name" type="text" placeholder=" ">
-                    <label>Nombre</label>
-                </div>
-                <div class="input">
-                    <input name="surname" type="text" placeholder=" ">
-                    <label>Apellido</label>
-                </div>
                 <div class="input">
                     <input name="email" type="email" placeholder=" ">
                     <label for="email">Email</label>
                 </div>
                 <div class="input">
-                    <input name="password1" type="password" placeholder=" ">
+                    <input name="password" type="password" placeholder=" ">
                     <label>Clave</label>
                 </div>
-                <div class="input">
-                    <input name="password2" type="password" placeholder=" ">
-                    <label>Repita la clave</label>
-                </div>
-                <div class="input-date">
-                    <input name="date" type="date" placeholder=" ">
-                    <label>Fecha de nacimiento</label>
-                </div>
-                <div class="input-country">
-                    <select name="country">
-                        <option hidden disabled selected value="">Elige un pais</option>
-                        <option value="Argentina">Argentina</option>
-                        <option value="Bolivia">Bolivia</option>
-                        <option value="Brasil">Brasil</option>
-                        <option value="Chile">Chile</option>
-                        <option value="Colombia">Colombia</option>
-                        <option value="Ecuador">Ecuador</option>
-                        <option value="Paraguay">Paraguay</option>
-                        <option value="Peru">Peru</option>
-                        <option value="Uruguay">Uruguay</option>
-                        <option value="Venezuela">Venezuela</option>
-                    </select>
-                    <label>Pais</label>
-                </div>
-                <div class="check">
-                    <input name="terms" type="checkbox">
-                    <span>Acepto términos y condiciones</span>
-                </div>
                 <div class="button">
-                    <button type="submit">Registrarse</button>
+                    <button type="submit">Iniciar Sesión</button>
                 </div>
                 <a class="help" href="#">Necesitas ayuda?</a>
             </form>
@@ -104,7 +68,7 @@
     <footer>
     </footer>
 
-    <script src="/assets/js/register.js"></script>
+    <script src="/assets/js/login.js"></script>
 </body>
 
 </html>
