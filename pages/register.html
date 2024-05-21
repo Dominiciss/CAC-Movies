@@ -49,33 +49,40 @@
     <main>
         <div class="card">
             <h6>Registro</h6>
-            <form action="#" method="POST">
+            <form class="register" action="#" method="POST">
                 <div class="input">
-                    <input name="name" type="text" placeholder=" ">
+                    <span class="error hidden">El nombre tiene que contener mas de 2 caracteres</span>
+                    <input class="input-data" name="name" type="text" placeholder=" ">
                     <label>Nombre</label>
                 </div>
                 <div class="input">
-                    <input name="surname" type="text" placeholder=" ">
+                    <span class="error hidden">El apellido tiene que contener mas de 2 caracteres</span>
+                    <input class="input-data" name="surname" type="text" placeholder=" ">
                     <label>Apellido</label>
                 </div>
                 <div class="input">
-                    <input name="email" type="email" placeholder=" ">
+                    <span class="error hidden">El email no puede estar vacio y tiene que ser valido</span>
+                    <input class="input-data" name="email" type="email" placeholder=" ">
                     <label for="email">Email</label>
                 </div>
                 <div class="input">
-                    <input name="password1" type="password" placeholder=" ">
+                    <span class="error hidden">La clave tiene que tener mas de 4 caracteres</span>
+                    <input class="input-data" name="password1" type="password" placeholder=" ">
                     <label>Clave</label>
                 </div>
                 <div class="input">
-                    <input name="password2" type="password" placeholder=" ">
+                    <span class="error hidden">La clave tiene que tener mas de 4 caracteres</span>
+                    <input class="input-data" name="password2" type="password" placeholder=" ">
                     <label>Repita la clave</label>
                 </div>
                 <div class="input-date">
-                    <input name="date" type="date" placeholder=" ">
+                    <span class="error hidden">Tiene que haber una fecha</span>
+                    <input class="input-data" name="date" type="date" placeholder=" ">
                     <label>Fecha de nacimiento</label>
                 </div>
                 <div class="input-country">
-                    <select name="country">
+                    <span class="error hidden">Tiene que haber un pais</span>
+                    <select class="input-data" name="country">
                         <option hidden disabled selected value="">Elige un pais</option>
                         <option value="Argentina">Argentina</option>
                         <option value="Bolivia">Bolivia</option>
@@ -91,7 +98,8 @@
                     <label>Pais</label>
                 </div>
                 <div class="check">
-                    <input name="terms" type="checkbox">
+                    <span class="error hidden">Para crear una cuenta tienes que aceptar los terminos</span>
+                    <input class="input-data" name="terms" type="checkbox">
                     <span>Acepto términos y condiciones</span>
                 </div>
                 <div class="button">

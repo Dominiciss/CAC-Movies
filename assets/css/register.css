@@ -203,7 +203,7 @@ main .card>form>.input-date,
 main .card>form>.input-country {
     position: relative;
     width: 90%;
-    margin: .5rem calc((100% - 90%) / 2);
+    margin: .9rem calc((100% - 90%) / 2);
 }
 
 main .card .input input,
@@ -262,6 +262,46 @@ main .card .input label {
     transition: all .2s ease-in-out;
 }
 
+main .card .input .error,
+main .card .input-country .error,
+main .card .input-date .error,
+main .card .check .error {
+    color: red;
+    font-size: .95rem;
+    background: none;
+    position: absolute;
+    border-radius: .1rem;
+    pointer-events: none;
+    user-select: none;
+    bottom: -20px;
+    left: 15px;
+    padding: 0 .25rem;
+    opacity: 1;
+    font-size: .75rem;
+    white-space: nowrap;
+    transition: all .2s ease-in-out;
+}
+
+main .card .input .error.hidden,
+main .card .input-country .error.hidden,
+main .card .input-date .error.hidden,
+main .card .check .error.hidden {
+    opacity: 0;
+}
+
+main .card .input .error:not(.hidden)~input,
+main .card .input-country .error:not(.hidden)~select,
+main .card .input-date .error:not(.hidden)~input,
+main .card .check .error:not(.hidden)~input {
+    border: 1px solid red;
+}
+
+main .card .input .error:not(.hidden)~label,
+main .card .input-country .error:not(.hidden)~label,
+main .card .input-date .error:not(.hidden)~label {
+    color: red;
+}
+
 main .card .input-date label,
 main .card .input-country label {
     color: grey;
@@ -279,11 +319,12 @@ main .card .input-country label {
 
 main .card .check {
     display: flex;
+    position: relative;
     justify-content: start;
     align-items: center;
     color: white;
     font-size: .9rem;
-    margin: .5rem 1rem;
+    margin: .5rem 1rem 2rem 1rem;
 }
 
 main .card .check input {

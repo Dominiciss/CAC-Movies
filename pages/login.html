@@ -49,13 +49,15 @@
     <main>
         <div class="card">
             <h6>Iniciar Sesión</h6>
-            <form action="#" method="POST">
+            <form class="login" action="#" method="POST">
                 <div class="input">
-                    <input name="email" type="email" placeholder=" ">
+                    <span class="error hidden">El email no puede estar vacio y tiene que ser valido</span>
+                    <input name="email" type="text" placeholder=" " form="novalidate">
                     <label for="email">Email</label>
                 </div>
                 <div class="input">
-                    <input name="password" type="password" placeholder=" ">
+                    <span class="error hidden">La clave tiene que tener mas de 4 caracteres</span>
+                    <input name="password" type="password" placeholder=" " form="novalidate">
                     <label>Clave</label>
                 </div>
                 <div class="button">

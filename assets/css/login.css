@@ -201,7 +201,7 @@ main .card>form {
 main .card>form>.input {
     position: relative;
     width: 90%;
-    margin: .5rem calc((100% - 90%) / 2);
+    margin: .9rem calc((100% - 90%) / 2);
 }
 
 main .card .input input {
@@ -244,6 +244,31 @@ main .card .input label {
     left: 15px;
     padding: 0 .25rem;
     transition: all .2s ease-in-out;
+}
+
+main .card .input .error {
+    color: red;
+    font-size: .95rem;
+    background: none;
+    position: absolute;
+    border-radius: .1rem;
+    pointer-events: none;
+    user-select: none;
+    bottom: -20px;
+    left: 15px;
+    padding: 0 .25rem;
+    opacity: 1;
+    font-size: .75rem;
+    white-space: nowrap;
+    transition: all .2s ease-in-out;
+}
+
+main .card .input .error.hidden {
+    opacity: 0;
+}
+
+main .card .input .error:not(.hidden)~input {
+    border: 1px solid red;
 }
 
 main .card .check {
