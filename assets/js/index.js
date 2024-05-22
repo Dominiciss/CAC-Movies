@@ -15,7 +15,7 @@ const options = {
 //Asignamos que arrancamos en la pagina 1
   let currentPage = 1;
   //Traemos las tendencias de hoy
-  async function fetchMovies(pageNumber) {
+  async function fetchMovie(pageNumber) {
     try {
         const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pageNumber}&sort_by=popularity.desc`, options);
         const data = await response.json();
@@ -52,19 +52,19 @@ const options = {
     }
 }
 
-fetchMovies(currentPage)
+fetchMovie(currentPage)
 
 // Función para cargar la siguiente página
 function nextPage() {
     currentPage++;
-    fetchMovies(currentPage);
+    fetchMovie(currentPage);
 }
 
 // Función para cargar la página anterior 
 function prevPage() {
     if (currentPage > 1) {
         currentPage--;
-        fetchMovies(currentPage);
+        fetchMovie(currentPage);
     }
 }
 
