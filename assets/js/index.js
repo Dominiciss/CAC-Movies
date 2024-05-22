@@ -1,15 +1,16 @@
+import config from "./config";
 //const featured = document.querySelector("section.featured .featured-container")
 //const best = document.querySelector("section.best .best-container")
 const dropdown = document.querySelector("header nav .dropdown")
 const sections = document.querySelectorAll(".fade")
-
+const token = config.TMDB_API_TOKEN_KEY;
 /*Conexion con API the movideDB*/
 
 const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjg1ZjA1YzMzYmQ4N2UyYjNhYzZhZTljY2Q1ZDIzMyIsInN1YiI6IjY2NGRkZjdhNTE5NTYwMmQ0YjQzY2Q1NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6VPi2NHafgsMnKOggFX4w6u0toowpwUnUdMa05a5MQI'
+      Authorization: `Bearer ${token}`
     }
   };
 //Asignamos que arrancamos en la pagina 1
