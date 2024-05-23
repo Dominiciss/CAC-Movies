@@ -1,78 +1,99 @@
-const dropdown = document.querySelector("header nav .dropdown")
+document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector("header nav .dropdown");
 
-dropdown.addEventListener("click", (e) => {
-    const menu = e.target.parentNode.querySelector(".right")
+    dropdown.addEventListener("click", toggleMenu);
+
+    document.querySelector(".input-date").addEventListener("change", validateDate);
+    document.querySelector(".input-country").addEventListener("change", validateCountry);
+
+    document.querySelector(".register").addEventListener("submit", validateForm);
+
+    document.querySelectorAll("input").forEach((input) =>
+        input.addEventListener("input", hideError)
+    );
+});
+
+function toggleMenu(e) {
+    const menu = e.target.parentNode.querySelector(".right");
     if (menu.style.opacity == "1") {
-        menu.classList.remove("open")
-        menu.classList.add("close")
+        menu.classList.remove("open");
+        menu.classList.add("close");
         setTimeout(() => {
             if (menu.classList.contains("close")) {
-                menu.classList.remove("close")
-                menu.style.opacity = "0"
+                menu.classList.remove("close");
+                menu.style.opacity = "0";
             }
-        }, 400)
+        }, 400);
     } else {
-        menu.classList.remove("close")
-        menu.classList.add("open")
-        menu.style.opacity = "1"
+        menu.classList.remove("close");
+        menu.classList.add("open");
+        menu.style.opacity = "1";
     }
-})
+}
 
-document.querySelector(".input-date").addEventListener("change", (e) => {
-    const date = e.target
-    if (date.value != "" && date.value != " " && date.value != null && date.value != undefined) {
-        date.classList.add("valid")
-        date.parentNode.querySelector(".error").classList.add("hidden")
+function validateDate(e) {
+    const date = e.target;
+    if (date.value.trim() !== "") {
+        date.classList.add("valid");
+        date.parentNode.querySelector(".error").classList.add("hidden");
     } else {
-        date.classList.remove("valid")
+        date.classList.remove("valid");
     }
-})
+}
 
-document.querySelector(".input-country").addEventListener("change", (e) => {
-    const country = e.target
-    if (country.value != "" && country.value != " " && country.value != null && country.value != undefined) {
-        country.classList.add("valid")
-        country.parentNode.querySelector(".error").classList.add("hidden")
+function validateCountry(e) {
+    const country = e.target;
+    if (country.value.trim() !== "") {
+        country.classList.add("valid");
+        country.parentNode.querySelector(".error").classList.add("hidden");
     } else {
-        country.classList.remove("valid")
+        country.classList.remove("valid");
     }
-})
+}
 
-document.querySelector(".register").addEventListener("submit", (e) => {
-    e.preventDefault()
-    const [ name, surname, email, password1, password2, date, country, terms ] = Array.from(e.target.querySelectorAll(".input-data")).map((input) => input);
+function validateForm(e) {
+    e.preventDefault();
 
-    if (name.value == "" || name.value == undefined || name.value == null || name.value == " " || !/[a-z]{2,}/i.test(name.value)) {
-        name.parentNode.querySelector(".error").classList.remove("hidden")
+    const inputs = Array.from(e.target.querySelectorAll(".input-data"));
+    const [name, surname, email, password1, password2, date, country, terms] = inputs;
+
+    let isValid = true;
+
+    isValid &= validateInput(name, /^[a-z]{2,}$/i);
+    isValid &= validateInput(surname, /^[a-z]{2,}$/i);
+    isValid &= validateInput(email, /^[a-zA-Z0-9]+[@][a-zA-Z]+[.][a-zA-Z0-9]+$/);
+    isValid &= validateInput(password1, /^[a-z0-9]{4,}$/i);
+    isValid &= validateInput(password2, /^[a-z0-9]{4,}$/i);
+    isValid &= validateInput(date, /.+/);
+    isValid &= validateInput(country, /.+/);
+    isValid &= validateTerms(terms);
+
+    if (isValid) {
+        Swal.fire({
+            title: '¡Usted se ha registrado con Éxito!',
+            text: '¡Gracias por registrarte con nosotros!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
     }
+}
 
-    if (surname.value == "" || surname.value == undefined || surname.value == null || surname.value == " " || !/[a-z]{2,}/i.test(surname.value)) {
-        surname.parentNode.querySelector(".error").classList.remove("hidden")
+function validateInput(input, regex) {
+    const isValid = regex.test(input.value.trim());
+    if (!isValid) {
+        input.parentNode.querySelector(".error").classList.remove("hidden");
     }
+    return isValid;
+}
 
-    if (email.value == "" || email.value == undefined || email.value == null || email.value == " " || !/([a-zA-Z0-9]+[@][a-zA-Z]+)[.][a-zA-Z0-9]+/.test(email.value)) {
-        email.parentNode.querySelector(".error").classList.remove("hidden")
+function validateTerms(terms) {
+    const isValid = terms.checked;
+    if (!isValid) {
+        terms.parentNode.querySelector(".error").classList.remove("hidden");
     }
+    return isValid;
+}
 
-    if (password1.value == "" || password1.value == undefined || password1.value == null || password1.value == " " || !/[a-z0-9]{4,}/i.test(password1.value)) {
-        password1.parentNode.querySelector(".error").classList.remove("hidden")
-    }
-
-    if (password2.value == "" || password2.value == undefined || password2.value == null || password2.value == " " || !/[a-z0-9]{4,}/i.test(password2.value)) {
-        password2.parentNode.querySelector(".error").classList.remove("hidden")
-    }
-
-    if (date.value == "" || date.value == undefined || date.value == null || date.value == " ") {
-        date.parentNode.querySelector(".error").classList.remove("hidden")
-    }
-
-    if (country.value == "" || country.value == undefined || country.value == null || country.value == " ") {
-        country.parentNode.querySelector(".error").classList.remove("hidden")
-    }
-
-    if (terms.checked == false) {
-        terms.parentNode.querySelector(".error").classList.remove("hidden")
-    }
-})
-
-document.querySelectorAll("input").forEach((input) => input.addEventListener("input", (e) => e.target.parentNode.querySelector(".error").classList.add("hidden")))
+function hideError(e) {
+    e.target.parentNode.querySelector(".error").classList.add("hidden");
+}

@@ -1,0 +1,4 @@
+const config = {
+    TMDB_API_TOKEN_KEY: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjg1ZjA1YzMzYmQ4N2UyYjNhYzZhZTljY2Q1ZDIzMyIsInN1YiI6IjY2NGRkZjdhNTE5NTYwMmQ0YjQzY2Q1NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6VPi2NHafgsMnKOggFX4w6u0toowpwUnUdMa05a5MQI'
+}
+export default config;
