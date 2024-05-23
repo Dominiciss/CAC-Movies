@@ -1,21 +1,30 @@
 document.querySelector(".login").addEventListener("submit", (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const [email, password] = Array.from(e.target.querySelectorAll("input")).map((input) => input);
 
-    if (email.value == "" || email.value == undefined || email.value == null || email.value == " " || !/([a-zA-Z0-9]+[@][a-zA-Z]+)[.][a-zA-Z0-9]+/.test(email.value)) {
-        email.parentNode.querySelector(".error").classList.remove("hidden")
+    let valid = true;
+
+    if (email.value.trim() === "" || !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value)) {
+        email.parentNode.querySelector(".error").classList.remove("hidden");
+        valid = false;
+    } else {
+        email.parentNode.querySelector(".error").classList.add("hidden");
     }
 
-    if (password.value == "" || password.value == undefined || password.value == null || password.value == " " || !/[a-z0-9]{4,}/i.test(password.value)) {
-        password.parentNode.querySelector(".error").classList.remove("hidden")
+    // Validar el campo de password
+    if (password.value.trim() === "" || !/[a-zA-Z0-9]{4,}/.test(password.value)) {
+        password.parentNode.querySelector(".error").classList.remove("hidden");
+        valid = false;
+    } else {
+        password.parentNode.querySelector(".error").classList.add("hidden");
     }
 
-    if (email.value.trim() !== "" && password.value.trim() !== "") {
+
+    if (valid) {
         Swal.fire({
             icon: 'success',
             title: 'Bienvenido',
             confirmButtonText: 'Ok'
         });
     }
-})
-
+});
