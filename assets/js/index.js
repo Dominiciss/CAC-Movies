@@ -96,11 +96,3 @@ async function fetchTopRated() {
 }
 
 fetchTopRated();
-
-
-
-
-
-
-
-
