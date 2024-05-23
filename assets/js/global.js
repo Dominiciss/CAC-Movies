@@ -29,3 +29,12 @@ document.addEventListener("scroll", () => {
         }
     });
 });
+
+const isInView = (element) => {
+    const rect = element.getBoundingClientRect();
+
+    return (
+        rect.bottom > 0 &&
+        rect.top < (window.innerHeight || document.documentElement.clientHeight)
+    );
+};
