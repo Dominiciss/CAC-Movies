@@ -206,9 +206,7 @@ main .card>form>.input-country {
     margin: .9rem calc((100% - 90%) / 2);
 }
 
-main .card .input input,
-main .card .input-date input,
-main .card .input-country select {
+main .card .input input {
     box-sizing: border-box;
     padding: 1rem;
     width: 100%;
@@ -221,6 +219,28 @@ main .card .input-country select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+main .card .input-date input,
+main .card .input-country select {
+    box-sizing: border-box;
+    padding: 1rem;
+    width: 100%;
+    border: 1px solid grey;
+    border-radius: 5rem;
+    outline: none;
+    color: grey;
+    background: var(--background);
+    transition: all .2s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color-scheme: dark;
+}
+
+main .card .input-date input.valid,
+main .card .input-country select.valid {
+    color: white;
 }
 
 main .card .input-country select > option {
@@ -356,7 +376,7 @@ main .card .help {
     margin: 1rem 1rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     header nav .right {
         z-index: 1;
         position: absolute;
@@ -423,6 +443,11 @@ main .card .help {
         padding: 1rem 0;
         text-align: center;
         color: var(--background);
+    }
+
+    header nav .right a:hover {
+        background: none;
+        box-shadow: 0 0 1rem .05rem #00000084;
     }
 
     header nav .right li:nth-child(odd) {
