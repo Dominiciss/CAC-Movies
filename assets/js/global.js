@@ -3,7 +3,6 @@ const sections = document.querySelectorAll(".fade")
 
 dropdown.addEventListener("click", (e) => {
     const menu = document.querySelector(".right");
-console.log('click')
     if (menu.style.opacity == "1") {
         menu.classList.remove("open")
         menu.classList.add("close")

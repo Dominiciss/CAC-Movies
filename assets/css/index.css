@@ -490,7 +490,7 @@ footer .go-back {
     color: var(--text);
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 900px) {
     header nav .right {
         z-index: 1;
         position: absolute;
