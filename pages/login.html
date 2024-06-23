@@ -49,15 +49,15 @@
     <main>
         <div class="card">
             <h6>Iniciar Sesión</h6>
-            <form class="login" action="#" method="POST">
+            <form class="login" action="loginReceiver.php" method="POST">
                 <div class="input">
                     <span class="error hidden">El email no puede estar vacio y tiene que ser valido</span>
-                    <input name="email" type="text" placeholder=" " form="novalidate">
+                    <input class="input-data" name="email" type="email" placeholder=" ">
                     <label for="email">Email</label>
                 </div>
                 <div class="input">
                     <span class="error hidden">La clave tiene que tener mas de 4 caracteres</span>
-                    <input name="password" type="password" placeholder=" " form="novalidate">
+                    <input class="input-data" name="password" type="password" placeholder=" ">
                     <label>Clave</label>
                 </div>
                 <div class="button">
@@ -70,7 +70,7 @@
     <footer>
     </footer>
 
-    <script src="../assets/js/login.js"></script>
+   <!--<script src="../assets/js/login.js"></script>--> 
 </body>
 
 </html>
