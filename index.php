@@ -37,13 +37,13 @@
                         <a href="#featured">Tendencias</a>
                     </li>
                     <li>
-                        <a href="./pages/create_movie.html">Ingresar Pelicula</a>
+                        <a href="./pages/create_movie.php">Ingresar Pelicula</a>
                     </li>
                     <li>
-                        <a href="./pages/register.html">Registrarse</a>
+                        <a href="./pages/register.php">Registrarse</a>
                     </li>
                     <li>
-                        <a href="./pages/login.html">Iniciar Sesión</a>
+                        <a href="./pages/login.php">Iniciar Sesión</a>
                     </li>
                 </ul>
             </div>
@@ -61,7 +61,7 @@
         <section class="banner">
             <h1>Películas y series ilimitadas en un solo lugar</h1>
             <h2>Disfruta donde quieras. Cancela en cualquier momento.</h2>
-            <a href="./pages/register.html">Registrarse</a>
+            <a href="./pages/register.php">Registrarse</a>
         </section>
         <section class="search fade">
             <h5>¿Qué estas buscando para ver?</h5>
