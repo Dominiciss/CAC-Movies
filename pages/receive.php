@@ -3,7 +3,7 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+/*CORREGIR CONEXION A BASE DE DATOS*/
 // Incluir el archivo de configuración de la base de datos
 //require_once '../connection.php';
 $host = "localhost";
@@ -132,24 +132,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Ejecutar la consulta
             if (mysqli_stmt_execute($stmt)) {
-                // La inserción fue exitosa
                 echo "Usuario registrado correctamente";
-                // Redireccionar a una página de confirmación
                 header("Location: login.html");
                 exit();
             } else {
-                // Ocurrió un error durante la inserción
                 echo "Error al registrar el usuario: " . mysqli_error($con);
             }
 
-            // Cerrar la declaración preparada
             mysqli_stmt_close($stmt);
         }
 
-        // Cerrar la conexión
         mysqli_close($con);
     } else {
-        // Si se accede a este script de forma incorrecta, mostrar un mensaje de error
         echo "Acceso no permitido.";
     }
 
