@@ -1,16 +1,25 @@
+<?php
+// Verificar si hay un error de correo electrónico en la URL
+if (isset($_GET['email_error'])) {
+    $emailError = $_GET['email_error'];
+    // Mostrar alerta en JavaScript
+    echo "<script>alert('$emailError');</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Login</title>
     <link rel="shortcut icon" href="../public/favicon.ico" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/global.css">
-    <link rel="stylesheet" href="../assets/css/register.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
 </head>
 
 <body>
@@ -34,7 +43,7 @@
             <div class="right">
                 <ul id="dropdown-menu">
                     <li>
-                        <a href="./login.html">Iniciar Sesión</a>
+                        <a href="./register.php">Registrarse</a>
                     </li>
                 </ul>
             </div>
@@ -48,18 +57,8 @@
     </header>
     <main>
         <div class="card">
-            <h6>Registro</h6>
-            <form class="register" action="receive.php" method="POST">
-                <div class="input">
-                    <span class="error hidden">El nombre tiene que contener mas de 2 caracteres</span>
-                    <input class="input-data" name="name" type="text" placeholder=" ">
-                    <label>Nombre</label>
-                </div>
-                <div class="input">
-                    <span class="error hidden">El apellido tiene que contener mas de 2 caracteres</span>
-                    <input class="input-data" name="surname" type="text" placeholder=" ">
-                    <label>Apellido</label>
-                </div>
+            <h6>Iniciar Sesión</h6>
+            <form class="login" action="loginReceiver.php" method="POST">
                 <div class="input">
                     <span class="error hidden">El email no puede estar vacio y tiene que ser valido</span>
                     <input class="input-data" name="email" type="email" placeholder=" ">
@@ -67,43 +66,11 @@
                 </div>
                 <div class="input">
                     <span class="error hidden">La clave tiene que tener mas de 4 caracteres</span>
-                    <input class="input-data" name="password1" type="password" placeholder=" ">
+                    <input class="input-data" name="password" type="password" placeholder=" ">
                     <label>Clave</label>
                 </div>
-                <div class="input">
-                    <span class="error hidden">La clave tiene que tener mas de 4 caracteres</span>
-                    <input class="input-data" name="password2" type="password" placeholder=" ">
-                    <label>Repita la clave</label>
-                </div>
-                <div class="input-date">
-                    <span class="error hidden">Tiene que haber una fecha</span>
-                    <input class="input-data" name="date" type="date" placeholder=" ">
-                    <label>Fecha de nacimiento</label>
-                </div>
-                <div class="input-country">
-                    <span class="error hidden">Tiene que haber un pais</span>
-                    <select class="input-data" name="country">
-                        <option hidden disabled selected value="">Elige un pais</option>
-                        <option value="Argentina">Argentina</option>
-                        <option value="Bolivia">Bolivia</option>
-                        <option value="Brasil">Brasil</option>
-                        <option value="Chile">Chile</option>
-                        <option value="Colombia">Colombia</option>
-                        <option value="Ecuador">Ecuador</option>
-                        <option value="Paraguay">Paraguay</option>
-                        <option value="Peru">Peru</option>
-                        <option value="Uruguay">Uruguay</option>
-                        <option value="Venezuela">Venezuela</option>
-                    </select>
-                    <label>Pais</label>
-                </div>
-                <div class="check">
-                    <span class="error hidden">Para crear una cuenta tienes que aceptar los terminos</span>
-                    <input class="input-data" name="terms" type="checkbox">
-                    <span>Acepto términos y condiciones</span>
-                </div>
                 <div class="button">
-                    <button type="submit">Registrarse</button>
+                    <button type="submit">Iniciar Sesión</button>
                 </div>
                 <a class="help" href="#">Necesitas ayuda?</a>
             </form>
@@ -112,7 +79,7 @@
     <footer>
     </footer>
 
-    <script src="../assets/js/register.js"></script>
+   <!--<script src="../assets/js/login.js"></script>--> 
 </body>
 
 </html>
