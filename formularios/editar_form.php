@@ -30,16 +30,10 @@
             <div class="right">
                 <ul id="dropdown-menu">
                     <li>
-                        <a href="../index.php">Tendencias</a>
+                        <a href="../admin/dashboard.php">Admin Dashboard</a>
                     </li>
                     <li>
-                        <a href="./create_movie.php">Ingresar Pelicula</a>
-                    </li>
-                    <li>
-                        <a href="./register.php">Registrarse</a>
-                    </li>
-                    <li>
-                        <a href="./login.php">Iniciar Sesión</a>
+                        <a href="../assets/php/cerrar_sesion.php">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>
@@ -52,48 +46,90 @@
     </header>
     <main>
         <div class="card">
-            <h6>Ingresar Pelicula</h6>
-            <form form class="create_movie" action="../assets/php/create_movie.php" method="POST" enctype="multipart/form-data">
-                <div class="input">
-                    <span class="error hidden">La foto es obligatoria</span>
-                    <input class="input-data empty" id="movie_file" name="file" type="file" hidden>
-                    <label for="movie_file">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm0-2h14V5H5zm1-2h12l-3.75-5l-3 4L9 13zm-1 2V5z" />
-                        </svg>
-                        <img src="">
-                    </label>
+            <h1>Editar Pelicula</h1>
+            <form class="container p-5 create_movie" action="../CRUD/editar.php" method="POST" enctype="multipart/form-data">
+                <?php
+                $conexion = mysqli_connect("localhost", "root", "", "movies_cac");
+                if (!$conexion) {
+                    die("Error en la conexión al servidor: " . mysqli_connect_error());
+                }
+
+                //si existe el id en la url
+                if (isset($_REQUEST['id']) && !empty($_REQUEST['id'])) {
+                    $id = intval($_REQUEST['id']);
+
+                    //traemos todos los datos de la pelicula y la tabla image
+                    $sql = $conexion->query(
+                        "SELECT m.*, i.id AS image_id, i.name AS image_name, i.content AS image_content
+                        FROM movie m
+                        LEFT JOIN image i ON m.image_id = i.id
+                        WHERE m.id = $id;"
+                    );
+
+                    //Verificar que se econtró la pelicula
+                    if ($sql->num_rows > 0) {
+                        $resultado = $sql->fetch_assoc();
+                    } else {
+                        echo "No se encontró la pelicula con id $id";
+                        exit;
+                    }
+                } else {
+                    echo "No se ha seleccionado ninguna pelicula";
+                    exit;
+                }
+                ?>
+
+                <!--  Input Id de la pelicula en modo oculto 'hidden' porque se envia con el formulario -->
+                <input name="id" type="hidden" value="<?php echo $resultado['id']; ?>">
+
+
+                <!-- TRAER DATOS IMAGEN ASOCIADA (TABLA IMAGE) -->
+                <!-- Muestra la imagen actual -->
+                <div class="container d-flex flex-column justify-content-center">
+                    <img src="data:image/jpg;base64,<?php echo base64_encode($resultado['image_content']); ?>" width="250" height="250" style="padding: 0px 5rem">
                 </div>
+
+                <!-- Selecciona las imagenes restantes de la base de datos -->
+                <div class="input">
+                    <select class="form-select" name="image" id="image">
+                        <?php
+                        $sql1 = "SELECT * FROM image WHERE id = " . $resultado['image_id'] . " UNION SELECT * FROM image WHERE id != " . $resultado['image_id'] . " ORDER BY id DESC;";
+                        $result1 = $conexion->query($sql1);
+
+                        echo "<option value='" . $resultado['image_id'] . "' selected>" . $resultado['image_name'] . "</option>";
+
+                        while ($row = $result1->fetch_assoc()) {
+                            echo "<option value='" . $row['id'] . "'>" . $row['name']  . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                <!-- TRAER DATOS PELICULA (TABLA MOVIE) -->
                 <div class="input">
                     <span class="error hidden">El titulo no puede estar vacio</span>
-                    <input class="input-data" name="title" type="text" placeholder=" ">
-                    <label>Titulo</label>
+                    <input class="input-data" name="title" type="text" value="<?php echo $resultado['title']; ?>">
                 </div>
                 <div class="input">
                     <span class="error hidden">El director no puede estar vacio</span>
-                    <input class="input-data" name="director" type="text" placeholder=" ">
-                    <label>Director</label>
+                    <input class="input-data" name="director" type="text" value="<?php echo $resultado['director']; ?>">
                 </div>
                 <div class="input">
                     <span class="error hidden">El genero no puede estar vacio</span>
-                    <input class="input-data" name="genre" type="text" placeholder=" ">
-                    <label>Genero</label>
+                    <input class="input-data" name="genre" type="text" value="<?php echo $resultado['genre']; ?>">
                 </div>
                 <div class="input-group">
                     <div class="input-date half">
                         <span class="error hidden">Tiene que haber una fecha</span>
-                        <input class="input-data" name="date" type="date" placeholder=" ">
-                        <label>Fecha de Publicacion</label>
+                        <input class="input-data" name="date" type="date" value="<?php echo $resultado['date']; ?>">
                     </div>
                     <div class="input half">
                         <span class="error hidden">Tiene que haber una valoracion</span>
-                        <input class="input-data" name="rating" type="number" placeholder=" ">
-                        <label>Estrellas</label>
+                        <input class="input-data" name="rating" type="number" value="<?php echo $resultado['rating']; ?>">
                     </div>
                 </div>
                 <div class="input">
-                    <textarea class="input-data" name="description" placeholder=" "></textarea>
-                    <label>Descripcion</label>
+                    <textarea class="input-data" name="description" placeholder="<?php echo $resultado['description']; ?>"></textarea>
                 </div>
                 <div class="button">
                     <button type="submit">Ingresar Pelicula</button>
@@ -103,8 +139,10 @@
     </main>
     <footer>
     </footer>
+
     <script type="module" src="../assets/js/global.js"></script>
-    <script type="module" src="../assets/js/create_movie.js"></script>
+    <script type="module" src="../assets/js/edit_movie.js"></script>
+
 </body>
 
 </html>

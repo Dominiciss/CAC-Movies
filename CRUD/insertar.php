@@ -25,8 +25,8 @@ if (isset($_FILES["file"]) && isset($_POST["title"]) && isset($_POST["director"]
         $resultMovie = mysqli_query($con, $sqlMovie);
 
         if ($resultMovie) {
-            echo "Registro exitoso";
-            header("Location: ../../index.php");
+            echo "Registro de pelicula id $id exitoso";
+            header('Location: ../admin/dashboard.php');
             exit();
         } else {
             echo "Error en el registro de la película";
