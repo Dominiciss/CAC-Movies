@@ -186,7 +186,7 @@ main .card {
     animation: pop-in .8s ease-out 0s 1 normal forwards;
 }
 
-main .card>h6 {
+main .card>h6,h1 {
     color: var(--text);
     margin: 1.5rem 0;
     font-size: 1.5rem;

@@ -30,17 +30,11 @@
             <div class="right">
                 <ul id="dropdown-menu">
                     <li>
-                        <a href="../index.php">Tendencias</a>
-                    </li>
-                    <li>
-                        <a href="./create_movie.php">Ingresar Pelicula</a>
-                    </li>
+                        <a href="../index.php">Inicio</a>
+                    </li>                   
                     <li>
                         <a href="./register.php">Registrarse</a>
-                    </li>
-                    <li>
-                        <a href="./login.php">Iniciar Sesión</a>
-                    </li>
+                    </li>                   
                 </ul>
             </div>
             <button type="button" class="dropdown">

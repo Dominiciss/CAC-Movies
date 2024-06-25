@@ -6,17 +6,15 @@ if (!$conexion) {
 }
 
 $id = $_GET['id'];
-
 $sql = "DELETE FROM movie WHERE id = $id";
-
 $query = mysqli_query($conexion, $sql);
 
-
 if ($query) {
-    // header('Location: ../../admin/dashboard.php');
-    // exit();
     echo "Datos eliminados correctamente";
-    var_dump($query);
+    header('Location: ../admin/dashboard.php');
+    exit();
 } else {
     echo "Error al eliminar datos";
 }
+
+?>
