@@ -29,6 +29,7 @@ document.getElementById('next-button').addEventListener('click', () => {
     }
 });
 
+
 async function fetchMovies(pageNumber) {
     try {
         const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pageNumber}&sort_by=popularity.desc`, options);
@@ -69,6 +70,7 @@ async function fetchTopRated() {
     try {
         const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options);
         const data = await response.json();
+        console.log(data); 
 
         const TopMovies = data.results;
         const bestContainer = document.querySelector(".best-container");
@@ -96,3 +98,22 @@ async function fetchTopRated() {
 }
 
 fetchTopRated();
+
+
+/* FILTRAR POR PELICULAS DE API.THEMOVIEDB.ORG */
+
+document.getElementById('search-input').addEventListener('input', filterMovies);
+
+function filterMovies() {
+    const searchQuery = document.getElementById('search-input').value.toLowerCase();
+    const movieItems = document.querySelectorAll('.featured-container .item, .best-container .item');
+
+    movieItems.forEach(item => {
+        const title = item.querySelector('.title').textContent.toLowerCase();
+        if (title.includes(searchQuery)) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
