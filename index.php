@@ -122,6 +122,10 @@
         <div class="divider"></div>
         <section class="best fade">
             <h5>Las más aclamadas</h5>
+            <!-- Input con Ajax y Js sobre la api de themoviedb.org -->
+            <div class="search best-movies fade">
+                <input type="text" id="search-input-best" placeholder="Buscar por título...">
+            </div>
             <div class="carousel">
                 <ul class="best-container"></ul>
             </div>
@@ -141,4 +145,5 @@
 </body>
 <script type="module" src="./assets/js/global.js"></script>
 <script type="module" src="./assets/js/index.js"></script>
+
 </html>
