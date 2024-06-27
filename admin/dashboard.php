@@ -9,7 +9,6 @@ if ($varsession == null || $varsession = '') {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,9 +19,9 @@ if ($varsession == null || $varsession = '') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="shortcut icon" href="../public/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&amp;display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/create_movie.css">
+
 </head>
 
 <body>
@@ -62,11 +61,12 @@ if ($varsession == null || $varsession = '') {
             <span class="bg-dark">
                 <h1 class="text-light">LISTADO DE PELICULAS</h1>
             </span>
-            <span class="bg-dark d-flex justify-content-end align-items-center pe-4 py-2">
+            <span class="bg-dark d-flex justify-content-between align-items-center px-4 py-2">
+                <input type="text" name="buscar" id="buscar" class="form-control w-50" placeholder="Buscar por nombre, director, genero ...">
                 <a href="../formularios/agregar_form.php" class="btn btn-success">Agregar Pelicula</a>
             </span>
             <div class="container-fluid bg-light py-5 px-2">
-                <table class="table table-light table-hoverable">
+                <table class="table table-light table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -80,7 +80,8 @@ if ($varsession == null || $varsession = '') {
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <!-- tbody con todos los datos de la DB -->
+                    <tbody class="item-container">
                         <?php
                         $conexion = mysqli_connect("localhost", "root", "", "movies_cac");
                         if (!$conexion) {
@@ -97,11 +98,12 @@ if ($varsession == null || $varsession = '') {
                         while ($resultado = $sql->fetch_assoc()) {
                         ?>
 
-                            <tr>
+                            <tr class="item">
                                 <th scope="row"><?php echo $resultado['id'] ?></th>
-                                <th scope="row"><?php echo $resultado['title'] ?></th>
-                                <th scope="row"><?php echo $resultado['director'] ?></th>
-                                <th scope="row"><?php echo $resultado['genre'] ?></th>
+                                <!-- Los id permiten el filtrado de la funcion filterMovie -->
+                                <th scope="row" id="title"><?php echo $resultado['title'] ?></th>
+                                <th scope="row" id="director"><?php echo $resultado['director'] ?></th>
+                                <th scope="row" id="genre"><?php echo $resultado['genre'] ?></th>
                                 <th scope="row"><?php echo $resultado['date'] ?></th>
                                 <th scope="row"><?php echo $resultado['rating'] ?></th>
                                 <th scope="row"><?php echo $resultado['description'] ?></th>
@@ -114,12 +116,14 @@ if ($varsession == null || $varsession = '') {
                         <?php
                         }
                         ?>
-                    </tbody>
+                    </tbody>              
                 </table>
             </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type="module" src="../assets/js/dasboard.js"></script>
+
 </body>
 
 </html>

@@ -1,5 +1,8 @@
 <?php
 session_start();
+//añadir set-cookie: secure; HttpOnly y sessionID
+$_COOKIE['PHPSESSID'] = session_id();
+header('Set-Cookie: PHPSESSID=' . $_COOKIE['PHPSESSID'] . '; SameSite=None; Secure; HttpOnly');
 
 // Verificar que los datos del formulario están presentes
 if (isset($_POST["email"]) && isset($_POST["password"])) {
