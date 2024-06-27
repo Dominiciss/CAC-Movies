@@ -34,7 +34,6 @@ document.getElementById('next-button').addEventListener('click', () => {
 /* FILTRAR POR PELICULAS DE API.THEMOVIEDB.ORG */
 
 document.getElementById('search-input').addEventListener('input', filterMovies);
-document.getElementById('search-input-best').addEventListener('input', filterBestMovies);
 
 function filterMovies() {
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
@@ -52,6 +51,8 @@ function filterMovies() {
 
     renderMovies(filteredMovies);    
 }
+
+document.getElementById('search-input-best').addEventListener('input', filterBestMovies);
 
 function filterBestMovies() {
     const searchQuery = document.getElementById('search-input-best').value.toLowerCase();
@@ -91,8 +92,6 @@ function renderMovies(movies) {
 
         movieItem.appendChild(title);
         featuredContainer.appendChild(movieItem);
-        bestContainer.appendChild(movieItem);
-
     });
 }
 
