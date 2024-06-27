@@ -61,7 +61,7 @@
     <main>
         <div class="card">
             <h6>Registro</h6>
-            <form class="register" action="#" method="POST">
+            <form class="register" method="POST" novalidate>
                 <div class="input">
                     <span class="error hidden">El nombre tiene que contener mas de 2 caracteres</span>
                     <input class="input-data" name="name" type="text" placeholder=" ">
@@ -80,11 +80,13 @@
                 <div class="input">
                     <span class="error hidden">La clave tiene que tener mas de 4 caracteres</span>
                     <input class="input-data" name="password1" type="password" placeholder=" ">
+                    <div class="eye"></div>
                     <label>Clave</label>
                 </div>
                 <div class="input">
-                    <span class="error hidden">La clave tiene que tener mas de 4 caracteres</span>
+                    <span class="error hidden">La clave debe coincidir con la anterior</span>
                     <input class="input-data" name="password2" type="password" placeholder=" ">
+                    <div class="eye"></div>
                     <label>Repita la clave</label>
                 </div>
                 <div class="input-date">
@@ -120,12 +122,12 @@
                 <a class="help" href="#">Necesitas ayuda?</a>
             </form>
         </div>
+        <div class="loader-wrapper" hidden><div class="loader-background"><div class="loader"></div></div></div>
     </main>
     <footer>
     </footer>
-    <script type="module" src="../assets/js/global.js"></script>
-    <script type="module"  src="../assets/js/register.js"></script>
-   
+    <script src="../assets/js/global.js"></script>
+    <script src="../assets/js/register.js"></script>
 </body>
 
 </html>

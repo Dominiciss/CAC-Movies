@@ -202,8 +202,33 @@ main .card>form>.input,
 main .card>form>.input-date,
 main .card>form>.input-country {
     position: relative;
+    display: flex;
     width: 90%;
     margin: .9rem calc((100% - 90%) / 2);
+}
+
+main .card .input input[type="password"]::-ms-reveal,
+main .card .input input[type="password"]::-ms-clear {
+  display: none;
+}
+
+main .card .eye {
+    position: absolute;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' viewBox='0 0 24 24'%3E%3Cpath fill='%23808080' d='M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0'/%3E%3C/svg%3E");
+    width: 1.5em;
+    height: 1.5em;
+    right: 0;
+    margin: 0 1rem 0 0;
+    align-self: center;
+    user-select: none;
+}
+
+main .card .eye.close {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' viewBox='0 0 24 24'%3E%3Cpath fill='%23808080' d='M2 5.27L3.28 4L20 20.72L18.73 22l-3.08-3.08c-1.15.38-2.37.58-3.65.58c-5 0-9.27-3.11-11-7.5c.69-1.76 1.79-3.31 3.19-4.54zM12 9a3 3 0 0 1 3 3a3 3 0 0 1-.17 1L11 9.17A3 3 0 0 1 12 9m0-4.5c5 0 9.27 3.11 11 7.5a11.8 11.8 0 0 1-4 5.19l-1.42-1.43A9.86 9.86 0 0 0 20.82 12A9.82 9.82 0 0 0 12 6.5c-1.09 0-2.16.18-3.16.5L7.3 5.47c1.44-.62 3.03-.97 4.7-.97M3.18 12A9.82 9.82 0 0 0 12 17.5c.69 0 1.37-.07 2-.21L11.72 15A3.064 3.064 0 0 1 9 12.28L5.6 8.87c-.99.85-1.82 1.91-2.42 3.13'/%3E%3C/svg%3E");
+}
+
+main .card .eye:hover {
+    cursor: pointer;
 }
 
 main .card .input input {
@@ -243,7 +268,7 @@ main .card .input-country select.valid {
     color: white;
 }
 
-main .card .input-country select > option {
+main .card .input-country select>option {
     background: var(--background);
 }
 
@@ -260,6 +285,16 @@ main .card .input input:focus~label {
     color: var(--primary);
     font-size: .95rem;
     background: var(--background);
+}
+
+main .card .input input:not(input:placeholder-shown)~.eye,
+main .card .input input:focus~.eye {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' viewBox='0 0 24 24'%3E%3Cpath fill='%239f3647' d='M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0'/%3E%3C/svg%3E");
+}
+
+main .card .input input:not(input:placeholder-shown)~.eye.close,
+main .card .input input:focus~.eye.close {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' viewBox='0 0 24 24'%3E%3Cpath fill='%239f3647' d='M2 5.27L3.28 4L20 20.72L18.73 22l-3.08-3.08c-1.15.38-2.37.58-3.65.58c-5 0-9.27-3.11-11-7.5c.69-1.76 1.79-3.31 3.19-4.54zM12 9a3 3 0 0 1 3 3a3 3 0 0 1-.17 1L11 9.17A3 3 0 0 1 12 9m0-4.5c5 0 9.27 3.11 11 7.5a11.8 11.8 0 0 1-4 5.19l-1.42-1.43A9.86 9.86 0 0 0 20.82 12A9.82 9.82 0 0 0 12 6.5c-1.09 0-2.16.18-3.16.5L7.3 5.47c1.44-.62 3.03-.97 4.7-.97M3.18 12A9.82 9.82 0 0 0 12 17.5c.69 0 1.37-.07 2-.21L11.72 15A3.064 3.064 0 0 1 9 12.28L5.6 8.87c-.99.85-1.82 1.91-2.42 3.13'/%3E%3C/svg%3E");
 }
 
 main .card .input-date input.valid~label,
@@ -368,6 +403,63 @@ main .card .button button[type=submit] {
 
 main .card .button button[type=submit]:hover {
     cursor: pointer;
+}
+
+main .card .button button[type=submit][disabled] {
+    opacity: .5;
+}
+
+main .card .button button[type=submit][disabled]:hover {
+    cursor: default;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+main .loader-wrapper {
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+main .loader-wrapper[hidden] {
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+}
+
+main .loader-background {
+    display: flex;
+    border-radius: 5px;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+    width: 32em;
+    height: 379px;
+    max-width: calc(100% - (.625em * 2));
+}
+
+main .loader {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
 }
 
 main .card .help {
