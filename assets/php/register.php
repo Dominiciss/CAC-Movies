@@ -9,4 +9,4 @@ $date = $_POST["date"];
 $country = $_POST["country"];
 $connect = new Connection();
 
-$result = $connect->executeQuery("insert into user (name, surname, email, password, date, country) VALUES ('$name', '$surname', '$email', '$password', '$date', '$country')");
+$result = $connect->updateQuery("insert into user (name, surname, email, password, date, country) VALUES ('$name', '$surname', '$email', '$password', '$date', '$country')");

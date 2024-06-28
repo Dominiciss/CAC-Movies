@@ -1,5 +1,5 @@
 <?php
-include "./config.php";
+include "./tables/user.php";
 
 class Connection
 {
@@ -8,29 +8,36 @@ class Connection
     public $username = "root";
     public $password = "root";
 
-    function executeQuery($str)
+    function updateQuery($str)
     {
         $connection = mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
-
-        if (mysqli_connect_errno()) {
-            debug_to_console("Couldn't connect: " . mysqli_connect_errno(), 1);
-        } else {
-            debug_to_console("Successfully connected");
-        }
 
         if ($connection->query($str) === TRUE) {
             echo "New record created successfully";
         } else {
             echo "Error: " . $str . "<br>" . $connection->error;
+            return false;
         }
-
-        // while ($result = mysqli_fetch_array($query)) {
-        //     echo $result["name"];
-        // }
-        // debug_to_console($result);
 
         mysqli_close($connection);
 
         return true;
+    }
+
+    function selectQuery($str)
+    {
+        $connection = mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
+
+        $query = mysqli_query($connection, $str);
+
+        $results = array();
+        while ($result = mysqli_fetch_array($query)) {
+            $user = new User($result["id"], $result["name"], $result["surname"], $result["email"], $result["password"], $result["date"], $result["country"], $result["creation_time"]);
+            array_push($results, $user);
+        }
+
+        mysqli_close($connection);
+
+        return $results;
     }
 }

@@ -7,20 +7,5 @@
 This is the second exercise of the course Fullstack PHP supported by Codo a Codo.
 
 ## Photos of the page
-#### Home
-![foto 1](page_1.png)
-
-#### Search
-![foto 1](page_2.png)
-
-#### Featured
-![foto 1](page_3.png)
-
-#### Best rated
-![foto 1](page_4.png)
-
-| Home | Search & Featured | Best rated & Footer |
-| ---- | ---- | ---- |
-| ![foto 5](page_5.png) | ![foto 6](page_6.png) | ![foto 7](page_7.png) |
 
 

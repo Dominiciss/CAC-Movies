@@ -113,6 +113,10 @@ header nav ul a {
     margin: 0 .5rem;
 }
 
+header nav ul a:hover {
+    cursor: pointer;
+}
+
 header nav ul .home {
     display: flex;
     font-size: 1.3rem;

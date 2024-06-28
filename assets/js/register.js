@@ -51,7 +51,7 @@ async function validateForm(e) {
         document.querySelector(".loader-wrapper").hidden = false
         document.querySelector("body").style.overflow = "hidden"
 
-        formData = new FormData()
+        let formData = new FormData()
 
         formData.append('name', name.value)
         formData.append('surname', surname.value)
@@ -124,3 +124,25 @@ function handlePassword(e) {
         e.target.parentNode.querySelector("input").type = "password"
     }
 }
+
+document.getElementById("logout").addEventListener("click", async (e) => {
+    const response = await fetch("./../assets/php/logout.php", {
+        method: 'POST',
+    })
+
+    if (response.ok) {
+        Swal.fire({
+            title: '¡Usted se ha deslogueado con exito!',
+            text: '¡Adios!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        })
+    } else {
+        Swal.fire({
+            title: 'Error',
+            text: 'Pruebe a desloguearse nuevamente',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        })
+    }
+})

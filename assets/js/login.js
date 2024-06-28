@@ -1,30 +1,86 @@
-document.querySelector(".login").addEventListener("submit", (e) => {
+document.querySelector(".login").addEventListener("submit", async (e) => {
     e.preventDefault()
     const [email, password] = Array.from(e.target.querySelectorAll("input")).map((input) => input);
 
-    let valid = true;
+    let isValid = true
 
-    if (email.value.trim() === "" || !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value)) {
-        email.parentNode.querySelector(".error").classList.remove("hidden");
-        valid = false;
-    } else {
-        email.parentNode.querySelector(".error").classList.add("hidden");
+    isValid &= validateInput(email, /^[a-zA-Z0-9]+[@][a-zA-Z]+[.][a-zA-Z0-9]+$/)
+    isValid &= validateInput(password, /^[a-z0-9]{4,}$/i)
+
+    if (isValid) {
+        document.querySelector(".loader-wrapper").hidden = false
+        document.querySelector("body").style.overflow = "hidden"
+
+        let formData = new FormData()
+
+        formData.append('email', email.value)
+        formData.append('password', password.value)
+
+        const response = await fetch("./../assets/php/login.php", {
+            method: 'POST',
+            body: formData
+        })
+
+        if (response.ok) {
+            const data = await response.json()
+
+            document.querySelector(".loader-wrapper").hidden = true
+            document.querySelector("body").style.overflow = "auto"
+
+            if (data === undefined || data.length == 0) {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Datos incorrectos.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                })
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: `Bienvenido ${data[0]["name"]}`,
+                    confirmButtonText: 'Ok'
+                })
+            }
+        } else {
+            document.querySelector(".loader-wrapper").hidden = true
+            document.querySelector("body").style.overflow = "auto"
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor, espere un momento y vuelva a intentar.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
     }
+})
 
-    // Validar el campo de password
-    if (password.value.trim() === "" || !/[a-zA-Z0-9]{4,}/.test(password.value)) {
-        password.parentNode.querySelector(".error").classList.remove("hidden");
-        valid = false;
-    } else {
-        password.parentNode.querySelector(".error").classList.add("hidden");
+function validateInput(input, regex) {
+    const isValid = regex.test(input.value.trim())
+    if (!isValid) {
+        input.parentNode.querySelector(".error").classList.remove("hidden")
     }
+    return isValid
+}
 
-    if (email.value.trim() !== "" && password.value.trim() !== "") {
+document.getElementById("logout").addEventListener("click", async (e) => {
+    const response = await fetch("./../assets/php/logout.php", {
+        method: 'POST',
+    })
+
+    if (response.ok) {
         Swal.fire({
+            title: '¡Usted se ha deslogueado con exito!',
+            text: '¡Adios!',
             icon: 'success',
-            title: 'Bienvenido',
-            confirmButtonText: 'Ok'
-        });
+            confirmButtonText: 'OK'
+        })
+    } else {
+        Swal.fire({
+            title: 'Error',
+            text: 'Pruebe a desloguearse nuevamente',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        })
     }
 })
 
