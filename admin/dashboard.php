@@ -3,7 +3,7 @@
 /* con session_start() ponemos la sesion en la BD */
 session_start();
 $varsession = $_SESSION['email'];
-if ($varsession == null || $varsession = '') {
+if ($varsession == null || $varsession == '') {
     echo 'Usted no tiene autorizacion';
     die();
 }

@@ -1,4 +1,14 @@
 <?php
+error_reporting(E_ALL);
+ini_set('diconexion.php', 1);
+
+session_start();
+// Añadir set-cookie: secure; HttpOnly y sessionID
+$_COOKIE['PHPSESSID'] = session_id();
+header('Set-Cookie: PHPSESSID=' . $_COOKIE['PHPSESSID'] . '; SameSite=None; Secure; HttpOnly');
+
+// Incluir el archivo de configuración
+require_once('../config/conexion.php');
 
 if (isset($_FILES["file"]) && isset($_POST["title"]) && isset($_POST["director"]) && isset($_POST["genre"]) && isset($_POST["date"]) && isset($_POST["rating"]) && isset($_POST["description"])) {
     //conexion a la base de datos
@@ -37,3 +47,4 @@ if (isset($_FILES["file"]) && isset($_POST["title"]) && isset($_POST["director"]
 } else {
     echo "Error en el registro";
 }
+

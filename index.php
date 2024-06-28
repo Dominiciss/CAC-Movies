@@ -1,3 +1,49 @@
+<?php
+                        session_start();
+                        // Verificar si hay una sesión iniciada
+                        if (isset($_SESSION['email'])) {
+                            // Conexión a la base de datos
+                            $con = mysqli_connect("localhost", "root", "", "movies_cac");
+
+                            if (!$con) {
+                                die("Error en la conexión al servidor: " . mysqli_connect_error());
+                            }
+
+                            // Obtener el rol del usuario
+                            $email = $_SESSION['email'];
+                            $sql = "SELECT rol_id FROM userr WHERE email = ?";
+                            $stmt = mysqli_prepare($con, $sql);
+                            if ($stmt) {
+                                // Vincular el parámetro y ejecutar la consulta
+                                mysqli_stmt_bind_param($stmt, 's', $email);
+                                mysqli_stmt_execute($stmt);
+                                $result = mysqli_stmt_get_result($stmt);
+
+                                if ($result) {
+                                    $row = mysqli_fetch_array($result);
+
+                                    if ($row['rol_id'] == 1) { // admin
+                                        echo '<a href="./admin/dashboard.php">Volver al dashboard</a>';
+                                    } else if ($row['rol_id'] == 2) { // user
+                                        echo '<a href="./assets/php/cerrar_sesion.php">Cerrar sesión</a>';
+                                    } else {
+                                        echo '<a href="./pages/login.php">Iniciar sesión</a>';
+                                    }
+                                } else {
+                                    echo '<a href="./pages/login.php">Iniciar sesión</a>';
+                                }
+
+                                // Cerrar la conexión
+                                mysqli_stmt_close($stmt);
+                            } else {
+                                echo '<a href="./pages/login.php">Iniciar sesión</a>';
+                            }
+
+                            mysqli_close($con);
+                        } else {
+                            echo '<a href="./pages/login.php">Iniciar sesión</a>';
+                        }
+                        ?>
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
 
@@ -35,52 +81,7 @@
                         <a href="./pages/register.php">Registrarse</a>
                     </li>
                     <li>
-                        <?php
-                        session_start();
-                        // Verificar si hay una sesión iniciada
-                        if (isset($_SESSION['email'])) {
-                            // Conexión a la base de datos
-                            $con = mysqli_connect("localhost", "root", "", "movies_cac");
-
-                            if (!$con) {
-                                die("Error en la conexión al servidor: " . mysqli_connect_error());
-                            }
-
-                            // Obtener el rol del usuario
-                            $email = $_SESSION['email'];
-                            $sql = "SELECT rol_id FROM user WHERE email = ?";
-                            $stmt = mysqli_prepare($con, $sql);
-                            if ($stmt) {
-                                // Vincular el parámetro y ejecutar la consulta
-                                mysqli_stmt_bind_param($stmt, 's', $email);
-                                mysqli_stmt_execute($stmt);
-                                $result = mysqli_stmt_get_result($stmt);
-
-                                if ($result) {
-                                    $row = mysqli_fetch_array($result);
-
-                                    if ($row['rol_id'] == 1) { // admin
-                                        echo '<a href="./admin/dashboard.php">Volver al dashboard</a>';
-                                    } else if ($row['rol_id'] == 2) { // user
-                                        echo '<a href="./assets/php/cerrar_sesion.php">Cerrar sesión</a>';
-                                    } else {
-                                        echo '<a href="./pages/login.php">Iniciar sesión</a>';
-                                    }
-                                } else {
-                                    echo '<a href="./pages/login.php">Iniciar sesión</a>';
-                                }
-
-                                // Cerrar la conexión
-                                mysqli_stmt_close($stmt);
-                            } else {
-                                echo '<a href="./pages/login.php">Iniciar sesión</a>';
-                            }
-
-                            mysqli_close($con);
-                        } else {
-                            echo '<a href="./pages/login.php">Iniciar sesión</a>';
-                        }
-                        ?>
+                        
                     </li>
                 </ul>
             </div>

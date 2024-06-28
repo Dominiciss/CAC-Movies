@@ -1,59 +1,47 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
-//añadir set-cookie: secure; HttpOnly y sessionID
+// Añadir set-cookie: secure; HttpOnly y sessionID
 $_COOKIE['PHPSESSID'] = session_id();
 header('Set-Cookie: PHPSESSID=' . $_COOKIE['PHPSESSID'] . '; SameSite=None; Secure; HttpOnly');
 
-// Verificar que los datos del formulario están presentes
+// Incluir el archivo de configuración para obtener la conexión PDO
+require_once('../../config/conexion.php');
+
 if (isset($_POST["email"]) && isset($_POST["password"])) {
-   // Conexión a la base de datos
-   $con = mysqli_connect("localhost", "root", "", "movies_cac");
+    try {
+        // Conexión a la base de datos usando PDO desde el archivo de configuración
+        $conexion = new PDO("mysql:host=localhost;dbname=id22319561_cac_movies", "id22319561_root", "CaC2024!");
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-   if (!$con) {
-      die("Error en la conexión al servidor: " . mysqli_connect_error());
-   }
+        // Escapar de manera segura los datos del formulario (aunque se usará consulta preparada)
+        $email = $_POST["email"];
+        $password = $_POST["password"];
 
-   //Escapar de manera segura los datos del formulario
-   $email = mysqli_real_escape_string($con, $_POST["email"]);
-   $password = mysqli_real_escape_string($con, $_POST["password"]);
+        // Preparar la consulta para verificar las credenciales
+        $stmt = $conexion->prepare("SELECT * FROM userr WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-   //Preparar la consulta
-   $sql = "SELECT * FROM user WHERE email = ? AND password = ?";
-   $stmt = mysqli_prepare($con, $sql);
-
-   if (!$stmt) {
-      die("Error en la preparación de la consulta: " . mysqli_error($con));
-   }
-
-   // Vincular los parámetros y ejecutar la consulta
-   mysqli_stmt_bind_param($stmt, 'ss', $email, $password);
-   mysqli_stmt_execute($stmt);
-   $result = mysqli_stmt_get_result($stmt);
-
-   if (!$result) {
-      die("Error en la ejecución de la consulta: " . mysqli_error($con));
-   }
-
-   // Verificar si se encontró un usuario y gestionar la sesión
-   if ($filas = mysqli_fetch_array($result)) {
-      $_SESSION["email"] = $email;
-
-      if ($filas['rol_id'] == 1) { // admin
-         header('Location: ../../admin/dashboard.php');
-         exit();
-      } else if ($filas['rol_id'] == 2) { // user
-         header('Location: ../../index.php');
-         exit();
-      } else {
-         echo "<h1 class='bad'>ERROR EN LA AUTENTICACIÓN: Rol no reconocido</h1>";
-      }
-   } else {
-      echo "<h1 class='bad'>ERROR EN LA AUTENTICACIÓN: Usuario o contraseña incorrectos</h1>";
-   }
-
-   // Cerrar la conexión
-   mysqli_stmt_close($stmt);
-   mysqli_close($con);
+        // Verificar si se encontró un usuario y verificar la contraseña
+        if ($user && password_verify($password, $user['password'])) {
+            // Iniciar sesión y redirigir al usuario
+            $_SESSION['user_id'] = $user['id']; // Asumiendo que tienes un campo 'id' en tu tabla 'userr'
+            //echo "Inicio de sesión exitoso";
+            header("Location: ../../index.php");
+            exit();
+        } else {
+            echo "Credenciales incorrectas";
+        }
+    } catch (PDOException $e) {
+        echo "Error en la conexión o consulta: " . $e->getMessage();
+    } finally {
+        // Cerrar la conexión
+        $conexion = null;
+    }
 } else {
-   echo "Error en el registro de usuarios: Faltan datos del formulario";
+    echo "Error: Faltan datos del formulario";
 }
+?>
