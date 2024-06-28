@@ -1,3 +1,4 @@
+<?php if (!session_id()) session_start() ?>
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
 

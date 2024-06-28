@@ -1,4 +1,3 @@
-<?php if (!session_id()) session_start() ?>
 <header>
     <nav>
         <ul class="left">

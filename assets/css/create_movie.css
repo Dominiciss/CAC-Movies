@@ -147,6 +147,7 @@ header nav .right a {
 }
 
 header nav .right a:hover {
+    cursor: pointer;
     background: black;
     box-shadow: 0 0 1rem .05rem #00000084;
 }

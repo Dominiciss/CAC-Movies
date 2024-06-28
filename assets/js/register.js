@@ -1,3 +1,6 @@
+/* jshint esversion: 8 */
+setTimeout(() => document.querySelector("body>div").innerHTML = "", 100)
+
 document.querySelector(".input-date").addEventListener("change", validateDate)
 document.querySelector(".input-country").addEventListener("change", validateCountry)
 Array.from(document.querySelectorAll(".input input[type=password] ~ .eye")).map(e => {e.addEventListener("click", handlePassword)})
@@ -27,6 +30,30 @@ function validateCountry(e) {
         country.classList.remove("valid")
     }
 }
+
+document.getElementById("logout")?.addEventListener("click", async (e) => {
+    const response = await fetch("../assets/php/logout.php", {
+        method: 'POST',
+    })
+
+    if (response.ok) {
+        Swal.fire({
+            title: '¡Usted se ha deslogueado con exito!',
+            text: '¡Adios!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            location.replace("../")
+        })
+    } else {
+        Swal.fire({
+            title: 'Error',
+            text: 'Pruebe a desloguearse nuevamente',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        })
+    }
+})
 
 async function validateForm(e) {
     e.preventDefault()
@@ -60,7 +87,7 @@ async function validateForm(e) {
         formData.append('date', date.value)
         formData.append('country', country.value)
 
-        const response = await fetch("./../assets/php/register.php", {
+        const response = await fetch("../assets/php/register.php", {
             method: 'POST',
             body: formData
         })
@@ -73,6 +100,8 @@ async function validateForm(e) {
                 text: '¡Gracias por registrarte con nosotros!',
                 icon: 'success',
                 confirmButtonText: 'OK'
+            }).then(() => {
+                location.replace("./login.php")
             })
         } else {
             document.querySelector(".loader-wrapper").hidden = true
@@ -124,25 +153,3 @@ function handlePassword(e) {
         e.target.parentNode.querySelector("input").type = "password"
     }
 }
-
-document.getElementById("logout").addEventListener("click", async (e) => {
-    const response = await fetch("./../assets/php/logout.php", {
-        method: 'POST',
-    })
-
-    if (response.ok) {
-        Swal.fire({
-            title: '¡Usted se ha deslogueado con exito!',
-            text: '¡Adios!',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        })
-    } else {
-        Swal.fire({
-            title: 'Error',
-            text: 'Pruebe a desloguearse nuevamente',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        })
-    }
-})

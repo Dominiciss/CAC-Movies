@@ -11,7 +11,7 @@ $result = $connect->selectQuery("select * from user where email = '$email' and p
 $data = json_encode($result);
 
 if (is_array($result) && Sizeof($result) > 0 && $result[0] != null) {
-    $id = $result[0]->get_id();
+    $id = $result[0][0];
 
     $_SESSION["user"] = $id;
 }

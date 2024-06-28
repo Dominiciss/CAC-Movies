@@ -1,7 +1,7 @@
 :root {
-    --primary: #9f3647;
-    --text: #ffffff;
-    --background: #181419;
+  --primary: #9f3647;
+  --text: #ffffff;
+  --background: #181419;
 }
 
 input:-webkit-autofill,
@@ -12,18 +12,18 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus,
 select:-webkit-autofill:active {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: var(--text);
-    transition: background-color 0s 600000s, color 0s 600000s !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: var(--text);
+  transition: background-color 0s 600000s, color 0s 600000s !important;
 }
 
 input[type="number"] {
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
+-webkit-appearance: textfield;
+-moz-appearance: textfield;
+appearance: textfield;
 }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
+-webkit-appearance: none;
 }

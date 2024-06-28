@@ -1,3 +1,6 @@
+/* jshint esversion: 8 */
+setTimeout(() => document.querySelector("body>div").innerHTML = "", 100)
+
 document.querySelector(".login").addEventListener("submit", async (e) => {
     e.preventDefault()
     const [email, password] = Array.from(e.target.querySelectorAll("input")).map((input) => input);
@@ -37,8 +40,10 @@ document.querySelector(".login").addEventListener("submit", async (e) => {
             } else {
                 Swal.fire({
                     icon: 'success',
-                    title: `Bienvenido ${data[0]["name"]}`,
+                    title: `Bienvenido ${data[0][1]}`,
                     confirmButtonText: 'Ok'
+                }).then(() => {
+                    location.replace("../")
                 })
             }
         } else {
@@ -62,8 +67,8 @@ function validateInput(input, regex) {
     return isValid
 }
 
-document.getElementById("logout").addEventListener("click", async (e) => {
-    const response = await fetch("./../assets/php/logout.php", {
+document.getElementById("logout")?.addEventListener("click", async (e) => {
+    const response = await fetch("../assets/php/logout.php", {
         method: 'POST',
     })
 
@@ -73,6 +78,8 @@ document.getElementById("logout").addEventListener("click", async (e) => {
             text: '¡Adios!',
             icon: 'success',
             confirmButtonText: 'OK'
+        }).then(() => {
+            location.replace("../")
         })
     } else {
         Swal.fire({
