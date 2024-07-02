@@ -19,8 +19,6 @@ dropdown.addEventListener("click", (e) => {
     }
 });
 
-
-
 document.addEventListener("scroll", () => {
     sections.forEach(section => {
         if (isInView(section)) {

@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <?php include "./fragments/navbar.php" ?>
+    <?php include_once "./fragments/navbar.php" ?>
     <main>
         <div class="card">
             <h6>Iniciar Sesión</h6>
@@ -27,12 +27,13 @@
                 <div class="input">
                     <span class="error hidden">La clave tiene que tener mas de 4 caracteres</span>
                     <input name="password" type="password" placeholder=" " form="novalidate">
+                    <div class="eye"></div>
                     <label>Clave</label>
                 </div>
                 <div class="button">
                     <button type="submit">Iniciar Sesión</button>
                 </div>
-                <a class="help" href="./register.html">¿No tienes una cuenta? Regístrate</a>
+                <a class="help" href="./register.php">¿No tienes una cuenta? Regístrate</a>
             </form>
         </div>
         <div class="loader-wrapper" hidden>

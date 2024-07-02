@@ -1,5 +1,5 @@
 <?php
-include "./connection.php";
+include_once "./connection.php";
 if (!session_id()) session_start();
 
 $email = $_POST["email"];

@@ -1,5 +1,4 @@
 <?php 
-include "./tables/user.php";
 if (!session_id()) session_start();
 
 $user = "";
@@ -15,4 +14,10 @@ function debug_to_console($data, $type = 0)
     }
 
     echo ($type == 0) ? "<script>console.log('" . $output . "');</script>" : "<script>console.error('" . $output . "');</script>";
+}
+
+function redirect($url, $statusCode = 303)
+{
+   header('Location: ' . $url, true, $statusCode);
+   die();
 }

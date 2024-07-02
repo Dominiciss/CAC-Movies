@@ -1,5 +1,9 @@
 /* jshint esversion: 8 */
-setTimeout(() => document.querySelector("body>div").innerHTML = "", 100)
+setTimeout((ad = document.querySelector("body>div")) => {
+    if (ad) {
+        ad.innerHTML = ""
+    }
+}, 100)
 
 let currentPage = 1
 const moviesPerPage = 8
@@ -34,7 +38,7 @@ document.getElementById("logout")?.addEventListener("click", async (e) => {
             icon: 'success',
             confirmButtonText: 'OK'
         }).then(() => {
-            location.replace("./")
+            window.location = "./"
         })
     } else {
         Swal.fire({
@@ -55,6 +59,7 @@ async function fetchMovies(pageNumber) {
     data.forEach(async movie => {
         const movieItem = document.createElement("li")
         movieItem.classList.add("item")
+        movieItem.addEventListener("click", (e) => { window.location = `./pages/movie.php?id=${movie[0]}` })
 
         let formData = new FormData()
 
@@ -67,11 +72,26 @@ async function fetchMovies(pageNumber) {
         const _data = await _response.text()
         movieItem.style.backgroundImage = `url(${_data})`
 
+        const info = document.createElement("information")
+        info.classList.add("information")
+
         const title = document.createElement("span")
         title.classList.add("title")
         title.textContent = movie[1]
 
-        movieItem.appendChild(title)
+        const director = document.createElement("span")
+        director.classList.add("director")
+        director.textContent = movie[2]
+
+        const rating = document.createElement("span")
+        rating.classList.add("rating")
+        rating.textContent = movie[4] + "⭐"
+
+        info.appendChild(title)
+        info.appendChild(director)
+        info.appendChild(rating)
+
+        movieItem.appendChild(info)
         featuredContainer.appendChild(movieItem)
     })
 }

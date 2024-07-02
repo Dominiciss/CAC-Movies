@@ -1,3 +1,7 @@
+<?php
+include_once "./assets/php/config.php";
+include_once "./assets/php/connection.php";
+?>
 <?php if (!session_id()) session_start() ?>
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
@@ -31,12 +35,14 @@
             <div class="right">
                 <ul id="dropdown-menu">
                     <li>
-                        <a href="./index.php">Tendencias</a>
+                        <a href="#featured">Tendencias</a>
                     </li>
                     <?php if (!empty($_SESSION["user"])) { ?>
-                        <li>
-                            <a href="./pages/create_movie.php">Ingresar Pelicula</a>
-                        </li>
+                        <?php if (get_role($_SESSION["user"]) == 1) { ?>
+                            <li>
+                                <a href="./pages/dashboard.php">Panel Admin</a>
+                            </li>
+                        <?php } ?>
                         <li>
                             <a id="logout">Cerrar Sesion</a>
                         </li>
@@ -62,7 +68,9 @@
         <section class="banner">
             <h1>Películas y series ilimitadas en un solo lugar</h1>
             <h2>Disfruta donde quieras. Cancela en cualquier momento.</h2>
-            <a href="./pages/register.html">Registrarse</a>
+            <?php if (empty($_SESSION["user"])) { ?>
+                <a href="./pages/register.php">Registrarse</a>
+            <?php } ?>
         </section>
         <section class="search fade">
             <h5>¿Qué estas buscando para ver?</h5>

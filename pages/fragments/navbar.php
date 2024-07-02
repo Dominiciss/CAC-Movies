@@ -1,3 +1,7 @@
+<?php 
+include_once "./../assets/php/config.php";
+include_once "./../assets/php/connection.php";
+?>
 <header>
     <nav>
         <ul class="left">
@@ -18,9 +22,11 @@
                     <a href="../index.php">Tendencias</a>
                 </li>
                 <?php if (!empty($_SESSION["user"])) { ?>
-                    <li>
-                        <a href="./create_movie.php">Ingresar Pelicula</a>
-                    </li>
+                    <?php if (get_role($_SESSION["user"])) { ?>
+                        <li>
+                            <a href="./dashboard.php">Panel Admin</a>
+                        </li>
+                    <?php } ?>
                     <li>
                         <a id="logout">Cerrar Sesion</a>
                     </li>

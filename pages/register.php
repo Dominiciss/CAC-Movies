@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <?php include "./fragments/navbar.php" ?>
+    <?php include_once "./fragments/navbar.php" ?>
     <main>
         <div class="card">
             <h6>Registro</h6>
@@ -76,7 +76,7 @@
                 <div class="button">
                     <button type="submit">Registrarse</button>
                 </div>
-                <a class="help" href="./login.html">¿Ya tienes una cuenta? Inicia sesión</a>
+                <a class="help" href="./login.php">¿Ya tienes una cuenta? Inicia sesión</a>
             </form>
         </div>
         <div class="loader-wrapper" hidden>

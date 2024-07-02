@@ -237,7 +237,7 @@ main .card .input input {
     padding: 1rem;
     width: 100%;
     border: 1px solid grey;
-    border-radius: 5rem;
+    border-radius: 5px;
     outline: none;
     color: white;
     background: var(--background);
@@ -253,7 +253,7 @@ main .card .input-country select {
     padding: 1rem;
     width: 100%;
     border: 1px solid grey;
-    border-radius: 5rem;
+    border-radius: 5px;
     outline: none;
     color: grey;
     background: var(--background);

@@ -1,5 +1,9 @@
 /* jshint esversion: 8 */
-setTimeout(() => document.querySelector("body>div").innerHTML = "", 100)
+setTimeout((ad = document.querySelector("body>div")) => {
+    if (ad) {
+        ad.innerHTML = ""
+    }
+}, 100)
 
 document.querySelector(".input-date").addEventListener("change", validateDate)
 document.querySelector(".input-country").addEventListener("change", validateCountry)
@@ -43,7 +47,7 @@ document.getElementById("logout")?.addEventListener("click", async (e) => {
             icon: 'success',
             confirmButtonText: 'OK'
         }).then(() => {
-            location.replace("../")
+            window.location = "../"
         })
     } else {
         Swal.fire({
@@ -67,8 +71,8 @@ async function validateForm(e) {
     isValid &= validateInput(name, /^[a-z ]{2,}$/i)
     isValid &= validateInput(surname, /^[a-z ]{2,}$/i)
     isValid &= validateInput(email, /^[a-zA-Z0-9]+[@][a-zA-Z]+[.][a-zA-Z0-9]+$/)
-    isValid &= validateInput(password1, /^[a-z0-9]{4,}$/i)
-    isValid &= validateInput(password2, /^[a-z0-9]{4,}$/i)
+    isValid &= validateInput(password1, /^.{4,}$/i)
+    isValid &= validateInput(password2, /^.{4,}$/i)
     isValid &= matchPasswords(password1, password2)
     isValid &= validateInput(date, /.+/)
     isValid &= validateInput(country, /.+/)
@@ -77,6 +81,30 @@ async function validateForm(e) {
     if (isValid) {
         document.querySelector(".loader-wrapper").hidden = false
         document.querySelector("body").style.overflow = "hidden"
+
+        const emails = await fetch("./../assets/php/get_emails.php", {
+            method: 'GET'
+        })
+        const data = await emails.json()
+
+        data.forEach((e) => {
+            if (e[0] == email.value) {
+                isValid = false
+            }
+        })
+
+        if (isValid == false) {
+            document.querySelector(".loader-wrapper").hidden = true
+            document.querySelector("body").style.overflow = "auto"
+            Swal.fire({
+                title: 'Error',
+                text: 'Ya existe una cuenta con esta direccion email',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+            Array.from(e.target.elements).forEach(formElement => formElement.disabled = false);
+            return
+        }
 
         let formData = new FormData()
 
@@ -101,7 +129,7 @@ async function validateForm(e) {
                 icon: 'success',
                 confirmButtonText: 'OK'
             }).then(() => {
-                location.replace("./login.php")
+                window.location = "./login.php"
             })
         } else {
             document.querySelector(".loader-wrapper").hidden = true

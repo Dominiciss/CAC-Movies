@@ -1,5 +1,4 @@
 <?php
-include "./tables/user.php";
 
 class Connection
 {
@@ -41,4 +40,81 @@ class Connection
 
         return $results;
     }
+}
+
+function get_total_users_count()
+{
+    $connection = new Connection();
+
+    return $connection->selectQuery("select count(id) from user")[0][0];
+}
+
+function get_total_movies_count()
+{
+    $connection = new Connection();
+
+    return $connection->selectQuery("select count(id) from movie")[0][0];
+}
+
+function get_today_users_count()
+{
+    $connection = new Connection();
+
+    return $connection->selectQuery("select count(id) from user where date_format(creation_time, '%Y-%m-%d') = date_format(current_date, '%Y-%m-%d')")[0][0];
+}
+
+function get_today_movies_count()
+{
+    $connection = new Connection();
+
+    return $connection->selectQuery("select count(id) from movie where date_format(creation_time, '%Y-%m-%d') = date_format(current_date, '%Y-%m-%d')")[0][0];
+}
+
+function get_month_users_count()
+{
+    $connection = new Connection();
+
+    return $connection->selectQuery("select count(id) from user where date_format(creation_time, '%Y-%m') = date_format(current_date, '%Y-%m')")[0][0];
+}
+
+function get_month_movies_count()
+{
+    $connection = new Connection();
+
+    return $connection->selectQuery("select count(id) from movie where date_format(creation_time, '%Y-%m') = date_format(current_date, '%Y-%m')")[0][0];
+}
+
+function get_role($id)
+{
+    $connection = new Connection();
+
+    $result = $connection->selectQuery("select * from user where id = '$id'");
+
+    if (is_array($result) && Sizeof($result) > 0 && $result[0] != null) {
+        $role = $result[0][7];
+
+        return $role;
+    }
+}
+
+function get_movie($id)
+{
+    $connect = new Connection();
+
+    $result = $connect->selectQuery("select * from movie where id = '$id'");
+
+    if (is_array($result) && Sizeof($result) > 0 && $result[0] != null) {
+        $movie = $result[0];
+
+        return $movie;
+    }
+}
+
+function get_users()
+{
+    $connect = new Connection();
+
+    $result = $connect->selectQuery("select id, name, surname, email, password, date, country, role, date_format(creation_time, '%Y-%m-%d') from user");
+
+    return $result;
 }

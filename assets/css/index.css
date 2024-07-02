@@ -323,7 +323,8 @@ main .featured-container li {
     justify-content: center;
 }
 
-main .featured-container:hover li {
+main .featured-container:has(li:hover) li:not(li:hover) {
+    transform: scale(95%);
     opacity: .5;
 }
 
@@ -333,23 +334,50 @@ main .featured-container li:hover {
     opacity: 1;
 }
 
-main .featured-container li .title {
+main .featured-container li .information {
     position: absolute;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-    width: 90%;
-    padding: 5px 5% 5px 5%;
-    bottom: 0;
-    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
     border-radius: 0 0 1rem 1rem;
     color: var(--text);
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, black 20%, black 80%, rgba(255, 255, 255, 0) 100%);
+    background: rgba(0, 0, 0, .8);
     transition: all .4s ease-in-out;
+    user-select: none;
+    width: 100%;
+    margin: 0;
+    bottom: 0;
+    opacity: 0;
+    box-sizing: border-box;
 }
 
-main .featured-container li:hover .title {
+main .featured-container li .title {
+    font-weight: 800;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 1rem;
+    padding: 0 2rem 0 0;
+}
+
+main .featured-container li .director {
+    color: grey;
+    margin: 0 .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: .8rem;
+}
+
+main .featured-container li .rating {
+    position: absolute;
+    margin: 8px 5px;
+    top: 0;
+    right: 0;
+    font-size: .8rem;
+}
+
+main .featured-container li:hover .information {
     opacity: 1;
 }
 
@@ -416,7 +444,8 @@ main .best-container li {
     justify-content: center;
 }
 
-main .best-container:hover li {
+main .best-container:has(li:hover) li:not(li:hover) {
+    transform: scale(95%);
     opacity: .5;
 }
 

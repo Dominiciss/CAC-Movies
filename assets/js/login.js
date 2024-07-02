@@ -1,5 +1,19 @@
 /* jshint esversion: 8 */
-setTimeout(() => document.querySelector("body>div").innerHTML = "", 100)
+setTimeout((ad = document.querySelector("body>div")) => {
+    if (ad) {
+        ad.innerHTML = ""
+    }
+}, 100)
+
+Array.from(document.querySelectorAll(".input input[type=password] ~ .eye")).map(e => {e.addEventListener("click", handlePassword)})
+
+document.querySelectorAll("input").forEach((input) =>
+    input.addEventListener("input", hideError)
+)
+
+function hideError(e) {
+    e.target.parentNode.querySelector(".error").classList.add("hidden")
+}
 
 document.querySelector(".login").addEventListener("submit", async (e) => {
     e.preventDefault()
@@ -43,7 +57,7 @@ document.querySelector(".login").addEventListener("submit", async (e) => {
                     title: `Bienvenido ${data[0][1]}`,
                     confirmButtonText: 'Ok'
                 }).then(() => {
-                    location.replace("../")
+                    window.location = "../"
                 })
             }
         } else {
@@ -58,6 +72,15 @@ document.querySelector(".login").addEventListener("submit", async (e) => {
         }
     }
 })
+
+function handlePassword(e) {
+    e.target.classList.toggle("close")
+    if (e.target.classList.contains("close")) {
+        e.target.parentNode.querySelector("input").type = "text"
+    } else {
+        e.target.parentNode.querySelector("input").type = "password"
+    }
+}
 
 function validateInput(input, regex) {
     const isValid = regex.test(input.value.trim())
@@ -79,7 +102,7 @@ document.getElementById("logout")?.addEventListener("click", async (e) => {
             icon: 'success',
             confirmButtonText: 'OK'
         }).then(() => {
-            location.replace("../")
+            window.location = "../"
         })
     } else {
         Swal.fire({
