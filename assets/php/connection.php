@@ -32,11 +32,13 @@ class Connection
         $query = mysqli_query($connection, $str);
 
         $results = array();
+
         while ($result = mysqli_fetch_array($query, PDO::FETCH_ASSOC)) {
             array_push($results, $result);
         }
 
         mysqli_close($connection);
+
 
         return $results;
     }
