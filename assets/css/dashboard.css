@@ -254,6 +254,7 @@ main .main_section {
 
 main .stats_section {
     display: flex;
+    justify-content: space-evenly;
 }
 
 main .stats_section>* {
@@ -593,7 +594,6 @@ main .users_section table tbody>tr>td button * {
 @media (max-width: 1000px) {
     main .main_section {
         flex-direction: column;
-        align-items: center;
     }
 
     main .users_section {
@@ -613,6 +613,10 @@ main .users_section table tbody>tr>td button * {
         transform: scale(100%);
         opacity: 100%;
     }
+}
+
+main .movie_section {
+    display: flex;
 }
 
 main .movie_section .card {
@@ -900,11 +904,175 @@ main .movie_section .card .help {
     margin: 1rem 1rem;
 }
 
+main .movie_table {
+    height: 780px;
+    width: auto;
+    overflow: auto;
+    backdrop-filter: brightness(80%);
+    margin: 2rem 1rem;
+    border-radius: 10px;
+}
+
+main .movie_table table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    user-select: none;
+}
+
+main .movie_table table tbody:has(button[type=submit]:not(button[hidden])) tr:has(td button[type=submit][hidden]) {
+    opacity: .5;
+    pointer-events: none;
+}
+
+main .movie_table table tbody tr:has(button[type=submit]:not(button[hidden])) {
+    opacity: 1;
+}
+
+main .movie_table table tbody tr:has(button[type=submit]:not(button[hidden])) td {
+    padding: 5px;
+}
+
+main .movie_table table th,
+main .movie_table table td {
+    border-bottom: 1px solid var(--background);
+    color: var(--background);
+    margin: 0;
+    padding: 0 5px;
+    transition: padding .4s ease-in-out;
+}
+
+main .movie_table table thead>tr>th {
+    white-space: nowrap;
+    padding: 5px;
+    background: var(--primary);
+    color: var(--text);
+}
+
+main .movie_table table tbody>tr:has(td) {
+    background: var(--text);
+    opacity: .8;
+    transition: opacity .4s ease-in-out;
+}
+
+main .movie_table table thead>tr>th:nth-child(even) {
+    background: #8e303f;
+}
+
+main .movie_table table tbody>tr>td:nth-child(odd) {
+    background: #d8d8d8;
+}
+
+main .movie_table table tbody>tr>td {
+    font-size: .8rem;
+}
+
+main .movie_table table tbody>tr>td>input {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    color: var(--background);
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+main .movie_table table tbody>tr>td>input[type=file]~label {
+    position: relative;
+}
+
+main .movie_table table tbody>tr>td>input[type=file]~label:hover:has(a.disabled) {
+    cursor: pointer;
+}
+
+main .movie_table table tbody>tr>td>input[type=file]~label svg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s ease-in-out;
+}
+
+main .movie_table table tbody>tr>td>input[type=file]~label:has(a.disabled) svg {
+    opacity: 1;
+}
+
+main .movie_table table tbody>tr>td>input[type=file]~label>a {
+    padding: 0 1rem 0 0;
+}
+
+main .movie_table table tbody>tr>td>input[type=file]~label>a.disabled {
+    text-decoration: none;
+    color: var(--background);
+    pointer-events: none;
+}
+
+main .movie_table table tbody>tr>td:has(div button) div {
+    display: flex;
+}
+
+main .movie_table table tbody>tr>td button {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: none;
+    background: none;
+    color: var(--background);
+    margin: 0;
+    padding: 0;
+    transition: opacity .4s ease-in-out, color .4s ease-in-out;
+}
+
+main .movie_table table tbody>tr>td button[type=submit]:hover {
+    color: green;
+}
+
+main .movie_table table tbody>tr>td button[type=reset]:hover {
+    color: red;
+}
+
+main .movie_table table tbody>tr>td .delete:hover {
+    color: var(--primary);
+}
+
+main .movie_table table tbody>tr>td button[hidden] {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+main .movie_table table tbody>tr>td button:hover {
+    cursor: pointer;
+}
+
+main .movie_table table tbody>tr>td button>svg {
+    width: 1em;
+    height: 1em;
+}
+
+main .movie_table table tbody>tr>td button * {
+    pointer-events: none;
+}
+
+main:has(div.error-404) {
+    margin: 0;
+}
+
 @media (max-width: 1000px) {
     main .movie_section {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    main .movie_table {
+        width: 95%;
+        max-height: 400px;
+        margin: 2rem auto;
     }
 }
 
@@ -914,10 +1082,6 @@ main .movie_section .card .help {
         box-shadow: none;
         border: 1px solid grey;
     }
-}
-
-main:has(div.error-404) {
-    margin: 0;
 }
 
 .error-404 {

@@ -101,9 +101,9 @@ function get_role($id)
 
 function get_movie($id)
 {
-    $connect = new Connection();
+    $connection = new Connection();
 
-    $result = $connect->selectQuery("select * from movie where id = '$id'");
+    $result = $connection->selectQuery("select * from movie where id = '$id'");
 
     if (is_array($result) && Sizeof($result) > 0 && $result[0] != null) {
         $movie = $result[0];
@@ -114,9 +114,38 @@ function get_movie($id)
 
 function get_users()
 {
-    $connect = new Connection();
+    $connection = new Connection();
 
-    $result = $connect->selectQuery("select id, name, surname, email, password, date, country, role, date_format(creation_time, '%Y-%m-%d') from user");
+    $result = $connection->selectQuery("select id, name, surname, email, password, date, country, role, date_format(creation_time, '%Y-%m-%d') from user");
 
     return $result;
+}
+
+function get_movies()
+{
+    $connection = new Connection();
+
+    $result = $connection->selectQuery("select id, title, director, genre, rating, date, image_id, description, date_format(creation_time, '%Y-%m-%d') from movie");
+
+    return $result;
+}
+
+function get_movie_image($id)
+{
+    $connect = new Connection();
+
+    $result = $connect->selectQuery("select * from image where id = $id");
+
+    $type = $result[0][3];
+
+    echo "data:$type;base64," . stripslashes($result[0][2]);
+}
+
+function get_image_name($id)
+{
+    $connection = new Connection();
+
+    $result = $connection->selectQuery("select name from image where id = $id");
+
+    return $result[0][0];
 }

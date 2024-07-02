@@ -1,10 +1,4 @@
 /* jshint esversion: 8 */
-setTimeout((ad = document.querySelector("body>div")) => {
-    if (ad) {
-        ad.innerHTML = ""
-    }
-}, 100)
-
 document.getElementById("logout")?.addEventListener("click", async (e) => {
     const response = await fetch("./assets/php/logout.php", {
         method: 'POST',
@@ -35,6 +29,8 @@ const setMoviesLength = async () => {
     })
     const data = await response.text()
     totalMovies = data
+
+    validateButtons()
 }
 
 let currentPage = 1
@@ -192,6 +188,8 @@ async function fetchTopRated() {
 
         movieItem.appendChild(info)
     })
+
+    bestContainer.querySelectorAll(".item:has(.loader)").forEach((e) => { e.remove() })
 }
 
 fetchTopRated()

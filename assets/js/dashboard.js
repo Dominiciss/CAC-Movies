@@ -1,10 +1,4 @@
 /* jshint esversion: 8 */
-setTimeout((ad = document.querySelector("body>div")) => {
-    if (ad) {
-        ad.innerHTML = ""
-    }
-}, 100)
-
 document.getElementById("logout")?.addEventListener("click", async (e) => {
     const response = await fetch("./../assets/php/logout.php", {
         method: 'POST',
@@ -262,4 +256,113 @@ document.querySelector(".movie_section .input-date").addEventListener("change", 
     } else {
         date.classList.remove("valid")
     }
+})
+
+document.querySelectorAll(".movie_table td .edit[type=button]").forEach((e) => {
+    e.addEventListener("click", () => {
+        e.hidden = true
+        e.parentNode.parentNode.querySelector("button[type=submit]").hidden = false
+        e.parentNode.parentNode.querySelector("button[type=reset]").hidden = false
+        e.parentNode.parentNode.parentNode.querySelectorAll("input").forEach((e) => { e.disabled = false })
+        e.parentNode.parentNode.parentNode.querySelectorAll("input[type=file]~label").forEach((e) => { e.querySelector("a").classList.add("disabled") })
+    })
+})
+
+document.querySelectorAll(".movie_table td button[type=reset]").forEach((e) => {
+    e.addEventListener("click", () => {
+        e.hidden = true
+        e.parentNode.parentNode.querySelector("button[type=submit]").hidden = true
+        e.parentNode.parentNode.parentNode.querySelectorAll("input").forEach((e) => { e.disabled = true })
+        e.parentNode.parentNode.parentNode.querySelectorAll("input[type=file]~label").forEach((e) => { e.querySelector("a").classList.remove("disabled") })
+        e.parentNode.parentNode.querySelector("button[type=button]").hidden = false
+    })
+})
+
+document.querySelectorAll(".movie_table td button[type=submit]").forEach((e) => {
+    e.parentNode.parentNode.parentNode.querySelector("form").addEventListener("submit", async (e) => {
+        e.preventDefault()
+        e.target.parentNode.querySelectorAll("input").forEach(e => e.disabled = true)
+
+        const id = e.target.parentNode.querySelector(".id").textContent
+        const image_id = e.target.parentNode.querySelector("input[type=file]").getAttribute("image")
+        const inputs = Array.from(e.target.parentNode.querySelectorAll("input"))
+        const [title, director, genre, rating, date, file, description] = inputs
+
+        let formData = new FormData()
+
+        formData.append('id', id)
+        formData.append('title', title.value)
+        formData.append('director', director.value)
+        formData.append('genre', genre.value)
+        formData.append('rating', rating.value)
+        formData.append('date', date.value)
+        if (file.files[0]) {
+            formData.append('image_id', image_id)
+            formData.append('file', file.files[0])
+        }
+        formData.append('description', description.value)
+
+        const response = await fetch("../assets/php/movie_update.php", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+            },
+            body: formData
+        })
+
+        if (response.ok) {
+            Swal.fire({
+                title: '¡Usted ha actualizado la pelicula con exito!',
+                text: '¡Gracias por usar nuestros servicios!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location = "./dashboard.php"
+            })
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'Pruebe nuevamente',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
+        e.target.parentNode.querySelectorAll("input").forEach(e => e.disabled = false)
+        e.parentNode.parentNode.parentNode.querySelectorAll("input[type=file]~label").forEach((e) => { e.querySelector("a").classList.remove("disabled") })
+    })
+})
+
+document.querySelectorAll(".movie_table td .delete[type=button]").forEach((e) => {
+    e.addEventListener("click", async () => {
+        const id = e.parentNode.parentNode.querySelector(".id").textContent
+
+        let formData = new FormData()
+
+        formData.append('id', id)
+
+        if (confirm("Esta seguro que quiere remover esta pelicula?")) {
+            const response = await fetch("../assets/php/movie_delete.php", {
+                method: 'POST',
+                body: formData
+            })
+
+            if (response.ok) {
+                Swal.fire({
+                    title: '¡Usted ha removido a la pelicula con exito!',
+                    text: '¡Gracias por usar nuestros servicios!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location = "./dashboard.php"
+                })
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Pruebe nuevamente',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                })
+            }
+        }
+    })
 })

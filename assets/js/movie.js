@@ -1,10 +1,4 @@
 /* jshint esversion: 8 */
-setTimeout((ad = document.querySelector("body>div")) => {
-    if (ad) {
-        ad.innerHTML = ""
-    }
-}, 100)
-
 document.getElementById("logout")?.addEventListener("click", async (e) => {
     const response = await fetch("./../assets/php/logout.php", {
         method: 'POST',

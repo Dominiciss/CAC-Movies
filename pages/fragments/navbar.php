@@ -19,7 +19,7 @@ include_once "./../assets/php/connection.php";
         <div class="right">
             <ul id="dropdown-menu">
                 <li>
-                    <a href="../index.php">Tendencias</a>
+                    <a href="./movies.php">Peliculas</a>
                 </li>
                 <?php if (!empty($_SESSION["user"])) { ?>
                     <?php if (get_role($_SESSION["user"])) { ?>

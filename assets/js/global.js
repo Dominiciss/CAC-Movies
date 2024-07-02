@@ -1,6 +1,12 @@
 const dropdown = document.querySelector("header nav .dropdown")
 const sections = document.querySelectorAll(".fade")
 
+setTimeout((ad = document.querySelector("body>div")) => {
+    if (ad) {
+        ad.innerHTML = ""
+    }
+}, 200)
+
 dropdown.addEventListener("click", (e) => {
     const menu = document.querySelector(".right");
     if (menu.style.opacity == "1") {

@@ -1,10 +1,4 @@
 /* jshint esversion: 8 */
-setTimeout((ad = document.querySelector("body>div")) => {
-    if (ad) {
-        ad.innerHTML = ""
-    }
-}, 100)
-
 document.querySelector(".input-date").addEventListener("change", validateDate)
 document.querySelector(".input-country").addEventListener("change", validateCountry)
 Array.from(document.querySelectorAll(".input input[type=password] ~ .eye")).map(e => {e.addEventListener("click", handlePassword)})
