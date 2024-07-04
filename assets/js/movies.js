@@ -1,6 +1,6 @@
 /* jshint esversion: 8 */
 document.getElementById("logout")?.addEventListener("click", async (e) => {
-    const response = await fetch("./assets/php/logout.php", {
+    const response = await fetch("./../assets/php/logout.php", {
         method: 'POST',
     })
 
@@ -11,7 +11,7 @@ document.getElementById("logout")?.addEventListener("click", async (e) => {
             icon: 'success',
             confirmButtonText: 'OK'
         }).then(() => {
-            window.location = "./"
+            window.location = "./../"
         })
     } else {
         Swal.fire({
@@ -23,7 +23,7 @@ document.getElementById("logout")?.addEventListener("click", async (e) => {
     }
 })
 
-const movies = document.querySelectorAll(".movie_container>li")
+const movies = document.querySelectorAll(".movie_container>a.item")
 
 const search = (e = document.querySelector("input[name=search]")) => {
     let input = e

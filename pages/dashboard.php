@@ -331,7 +331,7 @@ $movies = get_movies();
                                         </label>
                                     </td>
                                     <td>
-                                        <textarea disabled name="description"><?php echo $movie[7] ?></textarea>
+                                        <textarea disabled name="description"><?php echo base64_decode($movie[7]) ?></textarea>
                                     </td>
                                     <td>
                                         <?php echo $movie[8] ?>

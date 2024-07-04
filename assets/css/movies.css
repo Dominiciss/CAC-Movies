@@ -207,7 +207,7 @@ main .movie_container {
     justify-content: center;
 }
 
-main .movie_container li {
+main .movie_container a.item {
     flex-shrink: 0;
     background-size: cover;
     background-position: center;
@@ -223,7 +223,7 @@ main .movie_container li {
     animation: card-pop-in .4s ease-in-out;
 }
 
-main .movie_container li.hidden {
+main .movie_container a.item.hidden {
     display: none;
 }
 
@@ -262,13 +262,13 @@ main .movie_container .item:hover {
     }
 }
 
-main .movie_container li:has(.loader) {
+main .movie_container a.item:has(.loader) {
     pointer-events: none;
     background: var(--background);
     animation: bg-beating 2s normal 0s infinite;
 }
 
-main .movie_container li .loader {
+main .movie_container a.item .loader {
     position: absolute;
     background: transparent;
     border-radius: 50%;
@@ -281,7 +281,7 @@ main .movie_container li .loader {
     animation: spin 2s linear infinite;
 }
 
-main .movie_container li .information {
+main .movie_container a.item .information {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -298,7 +298,7 @@ main .movie_container li .information {
     box-sizing: border-box;
 }
 
-main .movie_container li .title {
+main .movie_container a.item .title {
     font-weight: 800;
     overflow: hidden;
     white-space: nowrap;
@@ -307,7 +307,7 @@ main .movie_container li .title {
     padding: 0 2rem 0 0;
 }
 
-main .movie_container li .director {
+main .movie_container a.item .director {
     color: grey;
     margin: 0 .5rem;
     overflow: hidden;
@@ -316,7 +316,7 @@ main .movie_container li .director {
     font-size: .8rem;
 }
 
-main .movie_container li .rating {
+main .movie_container a.item .rating {
     position: absolute;
     margin: 8px 5px;
     top: 0;
@@ -324,7 +324,7 @@ main .movie_container li .rating {
     font-size: .8rem;
 }
 
-main .movie_container li:hover .information {
+main .movie_container a.item:hover .information {
     opacity: 1;
 }
 

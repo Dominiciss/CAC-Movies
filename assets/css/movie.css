@@ -316,4 +316,9 @@ main .main-section .information .data span.divider {
         flex-direction: column;
         align-items: center;
     }
+
+    main .main-section .image {
+        display: flex;
+        justify-content: center;
+    }
 }

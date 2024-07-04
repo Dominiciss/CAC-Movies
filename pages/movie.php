@@ -36,7 +36,7 @@ $movie = get_movie($_GET["id"]);
                 </div>
                 <br>
                 <h6>Overview</h6>
-                <span class="description"><?php echo (empty($movie[7])) ? "No se ha provisto una descripcion." : $movie[7] ?></span>
+                <span class="description"><?php echo (empty($movie[7])) ? "No se ha provisto una descripcion." : base64_decode($movie[7]) ?></span>
                 <br>
                 <h6>Director</h6>
                 <span class="director"><?php echo $movie[2] ?></span>

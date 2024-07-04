@@ -31,13 +31,13 @@ if (!empty($_GET)) {
         <div class="no_results hidden">No se encontraron peliculas</div>
         <ul class="movie_container">
             <?php foreach ($movies as $movie) { ?>
-                <li class="item" style="background-image: url('<?php echo get_movie_image($movie[6]) ?>')">
+                <a href="./movie.php?id=<?php echo $movie[0] ?>" class="item" style="background-image: url('<?php echo get_movie_image($movie[6]) ?>')">
                     <div class="information">
                         <span class="title"><?php echo $movie[1] ?></span>
                         <span class="director"><?php echo $movie[2] ?></span>
                         <span class="rating"><?php echo $movie[4] ?>⭐</span>
                     </div>
-                </li>
+                </a>
             <?php } ?>
         </ul>
     </main>
