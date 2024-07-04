@@ -153,7 +153,7 @@ document.querySelectorAll(".users_section td .delete[type=button]").forEach((e) 
     })
 })
 
-document.querySelectorAll(".movie_section input").forEach((input) =>
+document.querySelectorAll(".movie_section .movie_form input").forEach((input) =>
     input.addEventListener("input", (e) => { e.target.parentNode.querySelector(".error").classList.add("hidden") })
 )
 
@@ -248,7 +248,7 @@ document.querySelector("#movie_file").addEventListener("change", (e) => {
     }
 })
 
-document.querySelector(".movie_section .input-date").addEventListener("change", (e) => {
+document.querySelector(".movie_section .movie_form .input-date").addEventListener("change", (e) => {
     const date = e.target
     if (date.value.trim() !== "") {
         date.classList.add("valid")
@@ -264,6 +264,7 @@ document.querySelectorAll(".movie_table td .edit[type=button]").forEach((e) => {
         e.parentNode.parentNode.querySelector("button[type=submit]").hidden = false
         e.parentNode.parentNode.querySelector("button[type=reset]").hidden = false
         e.parentNode.parentNode.parentNode.querySelectorAll("input").forEach((e) => { e.disabled = false })
+        e.parentNode.parentNode.parentNode.querySelectorAll("textarea").forEach((e) => { e.disabled = false })
         e.parentNode.parentNode.parentNode.querySelectorAll("input[type=file]~label").forEach((e) => { e.querySelector("a").classList.add("disabled") })
     })
 })
@@ -273,7 +274,12 @@ document.querySelectorAll(".movie_table td button[type=reset]").forEach((e) => {
         e.hidden = true
         e.parentNode.parentNode.querySelector("button[type=submit]").hidden = true
         e.parentNode.parentNode.parentNode.querySelectorAll("input").forEach((e) => { e.disabled = true })
-        e.parentNode.parentNode.parentNode.querySelectorAll("input[type=file]~label").forEach((e) => { e.querySelector("a").classList.remove("disabled") })
+        e.parentNode.parentNode.parentNode.querySelectorAll("textarea").forEach((e) => { e.disabled = true; e.removeAttribute("style") })
+        e.parentNode.parentNode.parentNode.querySelectorAll("input[type=file]~label").forEach((e) => {
+            const a = e.querySelector("a")
+            a.classList.remove("disabled")
+            a.textContent = a.getAttribute("text")
+        })
         e.parentNode.parentNode.querySelector("button[type=button]").hidden = false
     })
 })
@@ -282,11 +288,13 @@ document.querySelectorAll(".movie_table td button[type=submit]").forEach((e) => 
     e.parentNode.parentNode.parentNode.querySelector("form").addEventListener("submit", async (e) => {
         e.preventDefault()
         e.target.parentNode.querySelectorAll("input").forEach(e => e.disabled = true)
+        e.target.parentNode.querySelectorAll("textarea").forEach(e => { e.disabled = true; e.removeAttribute("style") })
 
         const id = e.target.parentNode.querySelector(".id").textContent
         const image_id = e.target.parentNode.querySelector("input[type=file]").getAttribute("image")
         const inputs = Array.from(e.target.parentNode.querySelectorAll("input"))
-        const [title, director, genre, rating, date, file, description] = inputs
+        const description = e.target.parentNode.querySelector("textarea")
+        const [title, director, genre, rating, date, file] = inputs
 
         let formData = new FormData()
 
@@ -328,7 +336,8 @@ document.querySelectorAll(".movie_table td button[type=submit]").forEach((e) => 
             })
         }
         e.target.parentNode.querySelectorAll("input").forEach(e => e.disabled = false)
-        e.parentNode.parentNode.parentNode.querySelectorAll("input[type=file]~label").forEach((e) => { e.querySelector("a").classList.remove("disabled") })
+        e.target.parentNode.querySelectorAll("textarea").forEach(e => e.disabled = false)
+        e.target.parentNode.querySelectorAll("input[type=file]~label").forEach((e) => { e.querySelector("a").classList.remove("disabled") })
     })
 })
 
@@ -363,6 +372,18 @@ document.querySelectorAll(".movie_table td .delete[type=button]").forEach((e) =>
                     confirmButtonText: 'OK'
                 })
             }
+        }
+    })
+})
+
+document.querySelectorAll(".movie_section .movie_table input[type=file]").forEach((e) => {
+    e.addEventListener("change", (e) => {
+        const input = e.target
+        const a = input.parentNode.querySelector("label a")
+        if (input.files[0]) {
+            a.textContent = input.files[0].name
+        } else {
+            a.textContent = a.getAttribute("text")
         }
     })
 })

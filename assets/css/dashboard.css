@@ -978,6 +978,34 @@ main .movie_table table tbody>tr>td>input {
     font-family: 'Nunito', sans-serif;
 }
 
+main .movie_table table tbody>tr>td>textarea {
+    background: none;
+    width: 10rem;
+    height: 1rem;
+    min-width: 10rem;
+    min-height: 1rem;
+    border: none;
+    resize: both;
+    outline: none;
+    white-space: wrap;
+    overflow: auto;
+    color: var(--background);
+    font-family: 'Nunito', sans-serif;
+}
+
+main .movie_table table tbody>tr>td:has(textarea:focus:not(textarea[disabled])) {
+    outline: 2px solid var(--background);
+}
+
+main .movie_table table tbody>tr>td>textarea[disabled] {
+    resize: none;
+    width: 10rem !important;
+    height: 1rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: width .4s ease-in-out, height .4s ease-in-out;
+}
+
 main .movie_table table tbody>tr>td>input[type=file]~label {
     position: relative;
 }
@@ -1003,6 +1031,7 @@ main .movie_table table tbody>tr>td>input[type=file]~label:has(a.disabled) svg {
 
 main .movie_table table tbody>tr>td>input[type=file]~label>a {
     padding: 0 1rem 0 0;
+    white-space: nowrap;
 }
 
 main .movie_table table tbody>tr>td>input[type=file]~label>a.disabled {
@@ -1080,6 +1109,7 @@ main:has(div.error-404) {
     main .movie_section .card {
         width: 95%;
         box-shadow: none;
+        margin: 2rem auto;
         border: 1px solid grey;
     }
 }

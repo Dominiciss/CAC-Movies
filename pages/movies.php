@@ -4,7 +4,10 @@ include_once "./../assets/php/connection.php";
 
 $movies = get_movies();
 
-$search = $_GET["search"];
+$search = "";
+if (!empty($_GET)) {
+    $search = $_GET["search"];
+}
 ?>
 <?php if (!session_id()) session_start() ?>
 <!DOCTYPE html>

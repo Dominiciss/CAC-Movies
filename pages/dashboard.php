@@ -321,7 +321,7 @@ $movies = get_movies();
                                     <td>
                                         <input id="movie-<?php echo $movie[0] ?>-file" disabled hidden type="file" name="file" image="<?php echo $movie[6] ?>">
                                         <label for="movie-<?php echo $movie[0] ?>-file">
-                                            <a href="./movie_image.php?id=<?php echo $movie[6] ?>" target="_blank"><?php echo get_image_name($movie[6]) ?></a>
+                                            <a href="./movie_image.php?id=<?php echo $movie[6] ?>" target="_blank" text="<?php echo get_image_name($movie[6]) ?>"><?php echo get_image_name($movie[6]) ?></a>
                                             <svg class="upload" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                                     <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
@@ -331,7 +331,7 @@ $movies = get_movies();
                                         </label>
                                     </td>
                                     <td>
-                                        <input disabled type="text" name="description" value="<?php echo $movie[7] ?>">
+                                        <textarea disabled name="description"><?php echo $movie[7] ?></textarea>
                                     </td>
                                     <td>
                                         <?php echo $movie[8] ?>
