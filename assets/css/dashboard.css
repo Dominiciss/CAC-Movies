@@ -700,8 +700,8 @@ main .movie_section .card .input textarea {
     box-sizing: border-box;
     padding: 1rem;
     width: 100%;
-    height: 46.38px;
-    min-height: 48.36px;
+    height: 49px;
+    min-height: 49px;
     max-height: 120px;
     border: 1px solid grey;
     border-radius: 1vh;
@@ -712,7 +712,8 @@ main .movie_section .card .input textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     resize: vertical;
 }
 

@@ -55,32 +55,32 @@ $movies = get_movies();
                                 <div class="identifiers">
                                     <div>
                                         <div style="--color: red;"></div>
-                                        <span>Totales: <?php echo $total_users_count ?> (<?php echo round(($total_users_count - $today_users_count) / $total_users_count * 100) ?>%)</span>
+                                        <span>Totales: <?php echo $total_users_count ?> (<?php echo ($total_users_count > 0) ? round(($total_users_count - $today_users_count) / $total_users_count * 100) : "0" ?>%)</span>
                                     </div>
                                     <div>
                                         <div style="--color: blue;"></div>
-                                        <span>Hoy: <?php echo $today_users_count ?> (<?php echo round($today_users_count / $total_users_count * 100) ?>%)</span>
+                                        <span>Hoy: <?php echo $today_users_count ?> (<?php echo ($total_users_count > 0) ? round($today_users_count / $total_users_count * 100) : "0" ?>%)</span>
                                     </div>
                                 </div>
                                 <div class="pie">
-                                    <div class="part one" style="--color: blue; --percentage: <?php echo $today_users_count / $total_users_count * 100 ?>;"></div>
-                                    <div class="part two" style="--color: red; --percentage: <?php echo ($total_users_count - $today_users_count) / $total_users_count * 100 ?>;"></div>
+                                    <div class="part one" style="--color: blue; --percentage: <?php echo ($total_users_count > 0) ? $today_users_count / $total_users_count * 100 : "0" ?>;"></div>
+                                    <div class="part two" style="--color: red; --percentage: <?php echo ($total_users_count > 0) ? ($total_users_count - $today_users_count) / $total_users_count * 100 : "100" ?>;"></div>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="identifiers">
                                     <div>
                                         <div style="--color: red;"></div>
-                                        <span>Totales: <?php echo $total_users_count ?> (<?php echo round(($total_users_count - $month_users_count) / $total_users_count * 100) ?>%)</span>
+                                        <span>Totales: <?php echo $total_users_count ?> (<?php echo ($total_users_count > 0) ? round(($total_users_count - $month_users_count) / $total_users_count * 100) : "0" ?>%)</span>
                                     </div>
                                     <div>
                                         <div style="--color: blue;"></div>
-                                        <span>Mes: <?php echo $month_users_count ?> (<?php echo round($month_users_count / $total_users_count * 100) ?>%)</span>
+                                        <span>Mes: <?php echo $month_users_count ?> (<?php echo ($total_users_count > 0) ? round($month_users_count / $total_users_count * 100) : "0" ?>%)</span>
                                     </div>
                                 </div>
                                 <div class="pie">
-                                    <div class="part one" style="--color: blue; --percentage: <?php echo $month_users_count / $total_users_count * 100 ?>;"></div>
-                                    <div class="part two" style="--color: red; --percentage: <?php echo ($total_users_count - $month_users_count) / $total_users_count * 100 ?>;"></div>
+                                    <div class="part one" style="--color: blue; --percentage: <?php echo ($total_users_count > 0) ? $month_users_count / $total_users_count * 100 : "0" ?>;"></div>
+                                    <div class="part two" style="--color: red; --percentage: <?php echo ($total_users_count > 0) ? ($total_users_count - $month_users_count) / $total_users_count * 100 : "100" ?>;"></div>
                                 </div>
                             </div>
                         </div>
@@ -98,32 +98,32 @@ $movies = get_movies();
                                 <div class="identifiers">
                                     <div>
                                         <div style="--color: red;"></div>
-                                        <span>Totales: <?php echo $total_movies_count ?> (<?php echo round(($total_movies_count - $today_movies_count) / $total_movies_count * 100) ?>%)</span>
+                                        <span>Totales: <?php echo $total_movies_count ?> (<?php echo ($total_movies_count > 0) ? round(($total_movies_count - $today_movies_count) / $total_movies_count * 100) : "0" ?>%)</span>
                                     </div>
                                     <div>
                                         <div style="--color: blue;"></div>
-                                        <span>Hoy: <?php echo $today_movies_count ?> (<?php echo round($today_movies_count / $total_movies_count * 100) ?>%)</span>
+                                        <span>Hoy: <?php echo $today_movies_count ?> (<?php echo ($total_movies_count > 0) ? round($today_movies_count / $total_movies_count * 100) : "0" ?>%)</span>
                                     </div>
                                 </div>
                                 <div class="pie">
-                                    <div class="part one" style="--color: blue; --percentage: <?php echo $today_movies_count / $total_movies_count * 100 ?>;"></div>
-                                    <div class="part two" style="--color: red; --percentage: <?php echo ($total_movies_count - $today_movies_count) / $total_movies_count * 100 ?>;"></div>
+                                    <div class="part one" style="--color: blue; --percentage: <?php echo ($total_movies_count > 0) ? $today_movies_count / $total_movies_count * 100 : "0" ?>;"></div>
+                                    <div class="part two" style="--color: red; --percentage: <?php echo ($total_movies_count > 0) ? ($total_movies_count - $today_movies_count) / $total_movies_count * 100 : "100" ?>;"></div>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="identifiers">
                                     <div>
                                         <div style="--color: red;"></div>
-                                        <span>Totales: <?php echo $total_movies_count ?> (<?php echo round(($total_movies_count - $month_movies_count) / $total_movies_count * 100) ?>%)</span>
+                                        <span>Totales: <?php echo $total_movies_count ?> (<?php echo ($total_movies_count > 0) ? round(($total_movies_count - $month_movies_count) / $total_movies_count * 100) : "0" ?>%)</span>
                                     </div>
                                     <div>
                                         <div style="--color: blue;"></div>
-                                        <span>Mes: <?php echo $month_movies_count ?> (<?php echo round($month_movies_count / $total_movies_count * 100) ?>%)</span>
+                                        <span>Mes: <?php echo $month_movies_count ?> (<?php echo ($total_movies_count > 0) ? round($month_movies_count / $total_movies_count * 100) : "0" ?>%)</span>
                                     </div>
                                 </div>
                                 <div class="pie">
-                                    <div class="part one" style="--color: blue; --percentage: <?php echo $month_movies_count / $total_movies_count * 100 ?>;"></div>
-                                    <div class="part two" style="--color: red; --percentage: <?php echo ($total_movies_count - $month_movies_count) / $total_movies_count * 100 ?>;"></div>
+                                    <div class="part one" style="--color: blue; --percentage: <?php echo ($total_movies_count > 0) ? $month_movies_count / $total_movies_count * 100 : "0" ?>;"></div>
+                                    <div class="part two" style="--color: red; --percentage: <?php echo ($total_movies_count > 0) ? ($total_movies_count - $month_movies_count) / $total_movies_count * 100 : "100" ?>;"></div>
                                 </div>
                             </div>
                         </div>
@@ -293,6 +293,7 @@ $movies = get_movies();
                             <th>Publicacion</th>
                             <th>Imagen</th>
                             <th>Descripcion</th>
+                            <th>IMDb</th>
                             <th>Fecha de Creacion</th>
                             <th>Editar</th>
                             <th>Borrar</th>
@@ -334,7 +335,10 @@ $movies = get_movies();
                                         <textarea disabled name="description"><?php echo base64_decode($movie[7]) ?></textarea>
                                     </td>
                                     <td>
-                                        <?php echo $movie[8] ?>
+                                        <input disabled type="text" name="imdb" value="<?php echo $movie[8] ?>">
+                                    </td>
+                                    <td>
+                                        <?php echo $movie[9] ?>
                                     </td>
                                     <td>
                                         <div>

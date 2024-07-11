@@ -6,7 +6,7 @@ $director = $_POST["director"];
 $genre = $_POST["genre"];
 $rating = $_POST["rating"];
 $date = $_POST["date"];
-$description = $_POST["description"];
+$description = base64_encode($_POST["description"]);
 $connect = new Connection();
 
 $file = $_FILES["file"];

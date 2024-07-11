@@ -125,7 +125,7 @@ function get_movies()
 {
     $connection = new Connection();
 
-    $result = $connection->selectQuery("select id, title, director, genre, rating, date, image_id, description, date_format(creation_time, '%Y-%m-%d') from movie");
+    $result = $connection->selectQuery("select id, title, director, genre, rating, date, image_id, description, imdb, date_format(creation_time, '%Y-%m-%d') from movie");
 
     return $result;
 }

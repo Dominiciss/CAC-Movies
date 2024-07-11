@@ -24,7 +24,7 @@ document.getElementById("logout")?.addEventListener("click", async (e) => {
 })
 
 const setMoviesLength = async () => {
-    const response = await fetch('./../assets/php/get_movies_length.php', {
+    const response = await fetch('./assets/php/get_movies_length.php', {
         method: 'GET'
     })
     const data = await response.text()
@@ -94,26 +94,27 @@ async function fetchMovies(pageNumber) {
     featuredContainer.innerHTML = ""
     loading(featuredContainer)
 
-    const response = await fetch(`./../assets/php/get_movies.php?page=${pageNumber}`, {
+    const response = await fetch(`./assets/php/get_movies.php?page=${pageNumber}`, {
         method: 'GET'
     })
     const data = await response.json()
 
-    data.forEach(async (movie, index) => {
+    data.forEach(async (movie, index, array) => {
         const movieItem = featuredContainer.querySelectorAll("li.item")[index]
-        movieItem.querySelector(".loader").remove()
-        movieItem.addEventListener("click", (e) => { window.location = `./pages/movie.php?id=${movie[0]}` })
 
         let formData = new FormData()
 
         formData.append("id", movie[6])
 
-        const _response = await fetch("./../assets/php/get_movie_image.php", {
+        const _response = await fetch("./assets/php/get_movie_image.php", {
             method: 'POST',
             body: formData
         })
         const _data = await _response.text()
         movieItem.style.backgroundImage = `url(${_data})`
+
+        movieItem.querySelector(".loader").remove()
+        movieItem.addEventListener("click", (e) => { window.location = `./pages/movie.php?id=${movie[0]}` })
 
         const info = document.createElement("information")
         info.classList.add("information")
@@ -135,37 +136,41 @@ async function fetchMovies(pageNumber) {
         info.appendChild(rating)
 
         movieItem.appendChild(info)
-    })
 
-    featuredContainer.querySelectorAll(".item:has(.loader)").forEach((e) => { e.remove() })
+        if (index === array.length - 1) {
+            for (let i = moviesPerPage - 1; i > data.length - 1; i--) {
+                featuredContainer.querySelectorAll("li.item")[i].remove()
+            }
+        }
+    })
 }
 
 fetchMovies(currentPage)
 
-
 async function fetchTopRated() {
     loading(bestContainer, 12)
 
-    const response = await fetch('./../assets/php/get_top_rated_movies.php', {
+    const response = await fetch('./assets/php/get_top_rated_movies.php', {
         method: 'GET'
     })
     const data = await response.json()
 
-    data.forEach(async (movie, index) => {
+    data.forEach(async (movie, index, array) => {
         const movieItem = bestContainer.querySelectorAll("li.item")[index]
-        movieItem.querySelector(".loader").remove()
-        movieItem.addEventListener("click", (e) => { window.location = `./pages/movie.php?id=${movie[0]}` })
 
         let formData = new FormData()
 
         formData.append("id", movie[6])
 
-        const _response = await fetch("./../assets/php/get_movie_image.php", {
+        const _response = await fetch("./assets/php/get_movie_image.php", {
             method: 'POST',
             body: formData
         })
         const _data = await _response.text()
         movieItem.style.backgroundImage = `url(${_data})`
+
+        movieItem.querySelector(".loader").remove()
+        movieItem.addEventListener("click", (e) => { window.location = `./pages/movie.php?id=${movie[0]}` })
 
         const info = document.createElement("information")
         info.classList.add("information")
@@ -187,9 +192,13 @@ async function fetchTopRated() {
         info.appendChild(rating)
 
         movieItem.appendChild(info)
-    })
 
-    bestContainer.querySelectorAll(".item:has(.loader)").forEach((e) => { e.remove() })
+        if (index === array.length - 1) {
+            for (let i = 11; i > data.length - 1; i--) {
+                bestContainer.querySelectorAll("li.item")[i].remove()
+            }
+        }
+    })
 }
 
 fetchTopRated()

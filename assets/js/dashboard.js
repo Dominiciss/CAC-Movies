@@ -166,9 +166,9 @@ document.querySelector(".create_movie").addEventListener("submit", async (e) => 
     let isValid = true
 
     isValid &= validateFile(file)
-    isValid &= validateInput(title, /^[a-zA-Z0-9 ]{2,}$/i)
-    isValid &= validateInput(director, /^[a-zA-Z ]{2,}$/i)
-    isValid &= validateInput(genre, /^[a-zA-Z ]{2,}$/i)
+    isValid &= validateInput(title, /^.{2,}$/i)
+    isValid &= validateInput(director, /^.{2,}$/i)
+    isValid &= validateInput(genre, /^.{2,}$/i)
     isValid &= validateInput(rating, /^[0-9.]{1,}$/i)
     isValid &= validateInput(date, /.+/)
 
@@ -232,15 +232,21 @@ document.querySelector("#movie_file").addEventListener("change", (e) => {
     const files = e.currentTarget.files
     if (files != null && files[0] != null) {
         const file = files[0]
-        const image = e.currentTarget.parentNode.querySelector("label img")
-        const reader = new FileReader()
 
-        reader.onload = (e) => {
-            image.src = e.target?.result
+        if (file.size > 1024 * 1000) {
+            alert('Sorry the file exceeds the maximum size of 1 MB!')
+            e.currentTarget.value = ""
+        } else {
+            const image = e.currentTarget.parentNode.querySelector("label img")
+            const reader = new FileReader()
+
+            reader.onload = (e) => {
+                image.src = e.target?.result
+            }
+            e.target?.classList.remove("empty")
+
+            reader.readAsDataURL(file)
         }
-        e.target?.classList.remove("empty")
-
-        reader.readAsDataURL(file)
     } else {
         console.error("Could not read file")
         e.currentTarget.value = ""
@@ -294,7 +300,7 @@ document.querySelectorAll(".movie_table td button[type=submit]").forEach((e) => 
         const image_id = e.target.parentNode.querySelector("input[type=file]").getAttribute("image")
         const inputs = Array.from(e.target.parentNode.querySelectorAll("input"))
         const description = e.target.parentNode.querySelector("textarea")
-        const [title, director, genre, rating, date, file] = inputs
+        const [title, director, genre, rating, date, file, imdb] = inputs
 
         let formData = new FormData()
 
@@ -304,6 +310,7 @@ document.querySelectorAll(".movie_table td button[type=submit]").forEach((e) => 
         formData.append('genre', genre.value)
         formData.append('rating', rating.value)
         formData.append('date', date.value)
+        formData.append('imdb', imdb.value)
         if (file.files[0]) {
             formData.append('image_id', image_id)
             formData.append('file', file.files[0])
@@ -379,11 +386,18 @@ document.querySelectorAll(".movie_table td .delete[type=button]").forEach((e) =>
 document.querySelectorAll(".movie_section .movie_table input[type=file]").forEach((e) => {
     e.addEventListener("change", (e) => {
         const input = e.target
-        const a = input.parentNode.querySelector("label a")
-        if (input.files[0]) {
-            a.textContent = input.files[0].name
+
+        if (input.files[0].size > 1024 * 1000) {
+            alert('Sorry the file exceeds the maximum size of 1 MB!')
+            input.value = ""
         } else {
-            a.textContent = a.getAttribute("text")
+            const a = input.parentNode.querySelector("label a")
+
+            if (input.files[0]) {
+                a.textContent = input.files[0].name
+            } else {
+                a.textContent = a.getAttribute("text")
+            }
         }
     })
 })

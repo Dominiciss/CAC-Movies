@@ -43,14 +43,34 @@ if (!empty($_GET)) {
     </main>
     <footer>
         <ul>
-            <li><a href="#">Términos y condiciones</a></li>
-            <li><a href="#">Preguntas frecuentes</a></li>
-            <li><a href="#">Ayuda</a></li>
-            <li><a href="#">Administrador Peliculas</a></li>
+            <li>
+                <span>Contribuidores</span>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/lucila-kerstin-werner-278b3026/" target="_blank">
+                    <img src="https://media.licdn.com/dms/image/D4E03AQEOKEwfAu1bBA/profile-displayphoto-shrink_200_200/0/1679856557410?e=1726099200&v=beta&t=r7POQzPpmzVcXExDoMYgOMT6o4BT0d7PWJ3eOnjfTbI" alt="Foto lucila">
+                    Lucila K. Werner
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/manuel-dominich-martinez/" target="_blank">
+                    <img src="https://media.licdn.com/dms/image/D4E03AQF-GKkQnD-bZA/profile-displayphoto-shrink_800_800/0/1699454678577?e=1726099200&v=beta&t=xzL7HDmaMCkLN4v1KJxHuBpdHOUtkVhdPIEfYXOd_o4" alt="Foto manuel">
+                    Manuel Dominich M.
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/cinthia-orona85/" target="_blank">
+                    <img src="https://media.licdn.com/dms/image/D4E35AQHIqGEOAmiB-Q/profile-framedphoto-shrink_800_800/0/1677696984240?e=1721257200&v=beta&t=utwdK1Tic4PBBQnNh2tyD8ai7MkBXjC9j_a5vVQKn84" alt="Foto cinthia">
+                    Cinthia M. Orona
+                </a>
+            </li>
+            <li>
+                <a>
+                    <img src="https://media-eze1-1.cdn.whatsapp.net/v/t61.24694-24/439361826_1862237447584154_4360063131333885870_n.jpg?ccb=11-4&oh=01_Q5AaIL1RlVwc_9ruBI98H8PfmAQyindvjdTgVIBD0RP480HT&oe=669C15EF&_nc_sid=e6ed6c&_nc_cat=100" alt="Foto lucas">
+                    Lucas
+                </a>
+            </li>
         </ul>
-        <a href="#" class="go-back"><svg style="pointer-events: none" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="m17 14l-5-5m0 0l-5 5" />
-            </svg></a>
     </footer>
     <script type="module" src="./../assets/js/global.js"></script>
     <script type="module" src="./../assets/js/movies.js"></script>

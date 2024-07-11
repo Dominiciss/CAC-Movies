@@ -345,9 +345,14 @@ footer ul {
 
 footer ul li {
     margin: 0 .5rem;
+    transition: transform .4s ease-in-out;
 }
 
-footer ul li a {
+footer ul li:nth-child(1) {
+    transform: scale(100%) !important;
+}
+
+footer ul li>span {
     font-size: 1.1rem;
     color: var(--text);
     font-weight: 700;
@@ -357,9 +362,39 @@ footer ul li a {
     transition: all .4s ease-in-out;
 }
 
-footer ul li a:hover {
-    box-shadow: 0 0 1rem .005rem black;
+footer ul li {
+    display: flex;
+    overflow: hidden;
+}
+
+footer ul:has(li:hover) li:not(li:hover) {
+    transform: scale(95%);
+}
+
+footer ul li:hover {
     transform: scale(105%);
+}
+
+footer ul li>a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text);
+    border-radius: 15px;
+    padding: 0 5px 0 0;
+    background: var(--background);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    user-select: none;
+}
+
+footer ul li>a img {
+    width: 40px;
+    height: 40px;
+    padding: 0 5px 0 0;
+    border-radius: 15px;
 }
 
 footer .go-back {
@@ -453,9 +488,11 @@ footer .go-back {
     header nav .right li:nth-child(even) {
         background-color: rgb(212, 212, 212);
     }
+}
 
+@media (max-width: 1000px) {
     footer {
-        height: 12rem;
+        height: auto;
     }
 
     footer ul {

@@ -7,6 +7,7 @@ $director = $_POST["director"];
 $genre = $_POST["genre"];
 $rating = $_POST["rating"];
 $date = $_POST["date"];
+$imdb = $_POST["imdb"];
 $description = base64_encode($_POST["description"]);
 $connect = new Connection();
 
@@ -20,4 +21,4 @@ if (!empty($file) && !empty($image_id)) {
     $result = $connect->updateQuery("update image set name = '$name', content = '$content', type = '$type' where id = $image_id");
 }
 
-$connect->updateQuery("update movie set title = '$title', director = '$director', genre = '$genre', rating = '$rating', date = '$date', description = '$description' where id = $id");
+$connect->updateQuery("update movie set title = '$title', director = '$director', genre = '$genre', rating = '$rating', date = '$date', description = '$description', imdb = '$imdb' where id = $id");

@@ -4,8 +4,55 @@
 </p>
 
 ## Description 📝
-This is the second exercise of the course Fullstack PHP supported by Codo a Codo.
+This is the final exercise of the course Fullstack PHP supported by Codo a Codo.
+
+## Deploy ✈️
+This project was deployed in two hosts. 
+
+000webhost: https://dried-lake.000webhostapp.com
+
+InfinityFree: https://cac-movies-24144.lovestoblog.com
+
+## Tools used
+<pre>
+<img src="./assets/img/html.png" alt="html" width="36.5px"><img src="./assets/img/js.png" alt="js" width="70px"><img src="./assets/img/css.png" alt="css" width="40px"> <img src="./assets/img/php.png" alt="php" width="40px"> <img src="./assets/img/mysql.png" alt="mysql" width="40px">
+</pre>
 
 ## Photos of the page
+#### Index.php
+<img src="./previews/index.jpeg" alt="index page">
 
+#### Movies.php
+<img src="./previews/movies.jpeg" alt="movies page">
+
+#### Movie.php
+<img src="./previews/movie.jpeg" alt="movie page">
+
+#### Register.php
+<img src="./previews/register.jpeg" alt="register page">
+
+#### Login.php
+<img src="./previews/login.jpeg" alt="login page">
+
+#### Dashboard.php
+<img src="./previews/dashboard.jpeg" alt="dashboard page">
+
+### Mobile version
+#### Index.php
+<img src="./previews/mobile/index.jpeg" alt="index mobile page">
+
+#### Movies.php
+<img src="./previews/mobile/movies.jpeg" alt="movies mobile page">
+
+#### Register.php
+<img src="./previews/mobile/movie.jpeg" alt="movie mobile page">
+
+#### Register.php
+<img src="./previews/mobile/register.jpeg" alt="register mobile page">
+
+#### Login.php
+<img src="./previews/mobile/login.jpeg" alt="login mobile page">
+
+#### Dashboard.php
+<img src="./previews/mobile/dashboard.jpeg" alt="dashboard mobile page">
 
