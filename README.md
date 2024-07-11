@@ -14,9 +14,13 @@ This project was deployed in two hosts.
 InfinityFree: https://cac-movies-24144.lovestoblog.com
 
 ## Tools used
-<pre>
-<img src="./assets/img/html.png" alt="html" width="36.5px"><img src="./assets/img/js.png" alt="js" width="70px"><img src="./assets/img/css.png" alt="css" width="40px"> <img src="./assets/img/php.png" alt="php" width="40px"> <img src="./assets/img/mysql.png" alt="mysql" width="40px">
-</pre>
+<img src="./assets/img/html.png" alt="html" width="36.5px">
+<img src="./assets/img/js.png" alt="js" width="70px">
+<img src="./assets/img/css.png" alt="css" width="40px">
+᲼
+<img src="./assets/img/php.png" alt="php" width="40px">
+᲼
+<img src="./assets/img/mysql.png" alt="mysql" width="40px">
 
 ## Photos of the page
 #### Index.php
