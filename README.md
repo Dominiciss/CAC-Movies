@@ -15,6 +15,7 @@ InfinityFree: https://cac-movies-24144.lovestoblog.com
 
 ### Admin account:
 > Email: admin@admin.com
+
 > Password: admin
 
 ## Tools used
