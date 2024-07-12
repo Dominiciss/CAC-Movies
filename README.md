@@ -7,11 +7,15 @@
 This is the final exercise of the course Fullstack PHP supported by Codo a Codo.
 
 ## Deploy ✈️
-This project was deployed in two hosts. 
+This project was deployed using two hosts. 
 
 000webhost: https://dried-lake.000webhostapp.com
 
 InfinityFree: https://cac-movies-24144.lovestoblog.com
+
+### Admin account:
+> Email: admin@admin.com
+> Password: admin
 
 ## Tools used
 <div>
